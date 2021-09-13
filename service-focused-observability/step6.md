@@ -4,7 +4,7 @@ With the [Service List](https://app.datadoghq.com/apm/services?env=ruby-shop), w
 
 For example, if we look at the [Frontend Service](https://app.datadoghq.com/apm/service/store-frontend/rack.request?env=ruby-shop), we can see there are two endpoints in particular that are substantially slower than the rest. 
 
-![Slow Services](./assets/ecommerce/bottleneck.gif)
+![Slow Services](./assets/bottleneck.gif)
 
 Both the `HomeController#index` and the `ProductController#show` enpoints are showing _much_ longer latency times. If we click in and view a trace, we'll see that we've got downstream microservices taking up a substantial portion of our load time.
 

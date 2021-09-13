@@ -42,17 +42,17 @@
       }
   },
     "files": [
-        "/ecommerce-observability/docker-compose-files/docker-compose-broken-no-instrumentation.yml"
+        "/ecommworkshop/deploy/docker-compose-files/docker-compose-broken-no-instrumentation.yml"
     ],
     "environment": {
       "uilayout": "editor-terminal",
-      "uieditorpath": "/ecommerce-observability",
+      "uieditorpath": "/ecommworkshop",
       "showdashboard": true,
       "hideHiddenFiles": true,
       "exclusionPatterns": ["**/store-frontend/tmp/*", "**/store-frontend/log/*"],
       "dashboards": [{"name": "storedog", "port": 3000}]
     },
     "backend": {
-      "imageid": "datadog-ubuntu"
+      "imageid": "datadog-base-v3"
     }
   }

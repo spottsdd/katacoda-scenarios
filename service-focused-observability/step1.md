@@ -8,7 +8,7 @@ We'll focus on thinking through what observability might make sense in a real ap
 
 In the background at the start of this workshop, the repo for our application was cloned from Github. If we change into the directory, we should be able to start the code with the following:
 
-`cd ../ecommerce-observability/docker-compose-files`{{execute}}
+`cd ../ecommworkshop/docker-compose-files`{{execute}}
 
 `POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres  docker-compose -f docker-compose-broken-instrumented.yml up`{{execute}}
 
@@ -20,17 +20,17 @@ Once our images are pulled, we should be able to jump into and view the applicat
 
 Try browsing around, and notice the homepage takes a very long time to load. 
 
-![storedog](https://github.com/burningion/katacoda-tracing-datadog/raw/master/assets/ecommerce/storedog.png)
+![storedog](./assets/storedog.png)
 
 ## Spinning up Traffic for Our Site
 
-In our `/ecommerce-observability` folder, we've got a copy of [GoReplay](https://goreplay.org).
+In our `/ecommworkshop` folder, we've got a copy of [GoReplay](https://goreplay.org).
 
 We've also got a capture of "production" traffic using GoReplay. Let's spin up an infinite loop of that traffic. Click the "+" sign next to the `storedog` tab, and open a new terminal to spin it up:
 
-`cd /ecommerce-observability`{{execute}}
+`cd /ecommworkshop`{{execute}}
 
-`$ ./gor --input-file-loop --input-file requests_0.gor --output-http "http://localhost:3000"`{{execute}}
+`./gor --input-file-loop --input-file requests_0.gor --output-http "http://localhost:3000"`{{execute}}
 
 Once we spin up that traffic, we can then take a look at the issues we've come across since the new team rolled out their first few microservices.
 
