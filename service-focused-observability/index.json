@@ -1,10 +1,10 @@
 {
-  "title": "Modern Observability in Practice with APM",
+  "title": "Service Focused Observability with Distributed Tracing",
   "description": "Tools and techniques to improve deployment in distributed software systems",
   "details": {
       "steps": [
         {
-          "title": "Our Broken Legacy Web Application",
+          "title": "Start up Storedog",
           "text": "step1.md"
         },
         {
@@ -12,7 +12,7 @@
           "text": "step2.md"
         },
         {
-          "title": "Estabilishing A Baseline for Systems",
+          "title": "Establishing A Baseline for Systems",
           "text": "step3.md"
         },
         {

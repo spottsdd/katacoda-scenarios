@@ -10,7 +10,7 @@ For supported applications like Flask, `ddtrace-run` dramatically simplifies the
 
 ## Instrumenting the Advertisements Service
 
-In our `docker-compose-files/docker-compose-broken-instrumented.yml`{{open}} there's a command to bring up our Flask server. If we look, we'll see it's a:
+In our `docker-compose-files/docker-compose-broken-instrumented.yml`{{open}} there's a command to bring up our Flask server. If we look at line 76, we'll see it's a:
 
 ```
 ddtrace-run flask run --port=5002 --host=0.0.0.0

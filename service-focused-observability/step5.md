@@ -1,26 +1,30 @@
 ## Adding Monitors to Our Services
 
-When we click into each of the services we've configured in APM, we see some default suggestions for monitors. Let's add some of these monitors so we can tell whenour application isn't performing properly.
+When we click into each of the services we've configured in APM, we see some default suggestions for monitors. 
 
-In my case, I'm going to add the default, suggested `P90` latency monitors, so we can tell when things are taking too long to respond.
+![Suggested Monitors](./assets/ecommerce/suggest-monitors.png)
+
+Let's add some of these monitors so we can tell when our application isn't performing properly.
+
+In this case, we are going to add the default, suggested `P90` latency monitors, so we can tell when things are taking too long to respond.
 
 ## Debugging an Application with Datadog
 
 The first place we can check is the Service Map, to get an idea for our current infrastructure and microservice dependencies.
 
-![Datadog Service Map](https://github.com/burningion/katacoda-tracing-datadog/raw/master/assets/ecommerce/service-map.png)
+![Datadog Service Map](./assets/ecommerce/service-map.png)
 
 In doing so, we can tell that we've got two microservices that our frontend calls, a `discounts-service`, along with an `advertisements-service`.
 
 If we click in to view our Service Overview in Datadog, we can see that our API itself isn't throwing any errors. The errors must be happening on the frontend.
 
-![Services List](https://github.com/burningion/katacoda-tracing-datadog/raw/master/assets/ecommerce/problematic-service.gif)
+![Services List](./assets/ecommerce/problematic-service.gif)
 
 So let's take a look at the frontend service, and see if we can find the spot where things are breaking.
 
 If we look into the service, we can see that it's been laid out by views. There's at least one view that seems to only give errors. Let's click into that view and see if a trace from that view can tell us what's going on.
 
-![Problematic Traces](https://github.com/burningion/katacoda-tracing-datadog/raw/master/assets/ecommerce/500-trace-errors.gif)
+![Problematic Traces](./assets/ecommerce/500-trace-errors.png)
 
 It seems the problem happens in a template. Let's get rid of that part of the template so we can get the site back up and running while figuring out what happened.
 
@@ -49,6 +53,10 @@ Edit the `docker-compose-files/docker-compose-broken-instrumented.yml`{{open}}, 
   image: "ddtraining/ecommerce-frontend:latest"
 ```
 
-With that, we can spin up our project. Let's see if there's anything else going on.
+With that, we can spin up our project. Let's see if there's anything else going on. Click back over to our original terminal where our application is currently running and dumping logs and stop it with `ctrl + C`. Next run:
+
+`POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres  docker-compose -f docker-compose-broken-instrumented.yml up`{{execute}}
+
+This will spin up our application using the changes made to the `yml` file.
 
 
