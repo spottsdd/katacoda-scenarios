@@ -1,5 +1,5 @@
 {
-  "title": "Service Observability in Practice with APM",
+  "title": "Modern Observability in Practice with APM",
   "description": "Tools and techniques to improve deployment in distributed software systems",
   "details": {
       "steps": [
@@ -8,7 +8,7 @@
           "text": "step1.md"
         },
         {
-          "title": "How to Understand an Application with Datadog",
+          "title": "How to Grok an Application with Datadog",
           "text": "step2.md"
         },
         {
@@ -41,15 +41,18 @@
         "text": "finish.md"
       }
   },
-  "environment": {
-    "uilayout": "editor-terminal",
-    "uieditorpath": "/ecommworkshop",
-    "showdashboard": true,
-    "hideHiddenFiles": true,
-    "exclusionPatterns": ["**/store-frontend/tmp/*", "**/store-frontend/log/*"],
-    "dashboards": [{"name": "storedog", "port": 3000}]
-  },
-  "backend": {
-    "imageid": "datadog-base-v3"
+    "files": [
+        "/ecommerce-observability/docker-compose-files/docker-compose-broken-no-instrumentation.yml"
+    ],
+    "environment": {
+      "uilayout": "editor-terminal",
+      "uieditorpath": "/ecommerce-observability",
+      "showdashboard": true,
+      "hideHiddenFiles": true,
+      "exclusionPatterns": ["**/store-frontend/tmp/*", "**/store-frontend/log/*"],
+      "dashboards": [{"name": "storedog", "port": 3000}]
+    },
+    "backend": {
+      "imageid": "datadog-ubuntu"
+    }
   }
-}

@@ -1,5 +1,4 @@
-# Service Observability in Practice with Datadog
-
+# Modern Observability in Practice with Datadog
 
 In this workshop, we'll apply observability principles to a partially broken eCommerce app who's team has started the move to microservices.
 

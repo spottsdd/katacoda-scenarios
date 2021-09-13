@@ -2,9 +2,9 @@
 
 Whenever working with new code, it can be daunting to understand a system and how all of its subsystems interact.
 
-Datadog instrumentation allows us to get immediate insight into what's going on with our software systems, and begin exploring places that may need fixes or improvement. 
+Datadog instrumentation allows us to get an immediate insight into what's going on with our software systems, and begin exploring places that may need improvement. 
 
-If we open our `deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}}, we can begin to understand how instrumentation is done with our application:
+If we open our `docker-compose-files/docker-compose-broken-instrumented.yml`{{open}}, we can begin to understand how instrumentation is done with our application:
 
 ```
   agent:
@@ -26,7 +26,7 @@ If we open our `deploy/docker-compose/docker-compose-broken-instrumented.yml`{{o
       com.datadoghq.ad.logs: '[{"source": "datadog-agent", "service": "agent"}]'
 ```
 
-With this, we've added a Datadog Agent container, and along with it, volumes to see the resource usage on our host, and the Docker socket so we can read all of the containers running on the host.
+With this, we've added a Datadog Agent container, and along with it, volumes to see the resource usage on our host,  and the Docker socket so we can read all of the containers running on the host.
 
 We've also added a `DD_API_KEY`, along with enabling logs and the process Agent. Finally, we've opened the port `8126`, where traces get shipped to for collection at the Agent level.
 
