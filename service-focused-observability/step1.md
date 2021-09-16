@@ -6,6 +6,14 @@ In this workshop, we're going to spin up and instrument our application to see w
 
 We'll focus on thinking through what observability might make sense in a real application, and see how setting up observability works in practice.
 
+## Log into the Datadog Trial Account
+
+In the terminal on the right, you'll see credentials for a newly provisioned Datadog trial account. Open a new private/incognito window and use the provided credentials to log into [Datadog](https://app.datadoghq.com/account/login).
+
+**Note**: You can access these login credentials whenever you need by typing `creds` in the terminal.
+
+## Starting Storedog
+
 In the background at the start of this workshop, the repo for our application was cloned from Github. If we change into the directory, we should be able to start the code with the following:
 
 `cd ../ecommworkshop/docker-compose`{{execute}}
@@ -22,7 +30,7 @@ Take a moment to navigate the site. Try browsing around, and notice the homepage
 
 ![storedog](./assets/storedog.png)
 
-## Generating up Traffic for Our Site
+## Generating Traffic for Our Site
 
 We've got a capture of "production" traffic using GoReplay. In our `/ecommworkshop` folder, you'll find a copy of [GoReplay](https://goreplay.org). Let's spin up an infinite loop of that traffic.
 
