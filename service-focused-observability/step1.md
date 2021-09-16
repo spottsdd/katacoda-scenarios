@@ -8,7 +8,7 @@ We'll focus on thinking through what observability might make sense in a real ap
 
 In the background at the start of this workshop, the repo for our application was cloned from Github. If we change into the directory, we should be able to start the code with the following:
 
-`cd ../ecommworkshop/docker-compose-files`{{execute}}
+`cd ../ecommworkshop/docker-compose`{{execute}}
 
 `POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres  docker-compose -f docker-compose-broken-instrumented.yml up`{{execute}}
 

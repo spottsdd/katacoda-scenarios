@@ -42,7 +42,7 @@
       }
   },
     "files": [
-        "/ecommworkshop/deploy/docker-compose-files/docker-compose-broken-no-instrumentation.yml"
+        "/ecommworkshop/deploy/docker-compose/docker-compose-broken-no-instrumentation.yml"
     ],
     "environment": {
       "uilayout": "editor-terminal",
