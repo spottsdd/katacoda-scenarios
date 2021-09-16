@@ -44,4 +44,4 @@ Once the traffic replay begins, we can take a look at the issues we've seen sinc
 
 There have been reports that the new `advertisements-service` broke the website. With the new deployment on staging, the `frontend` team has blamed the `ads-service` team, and the `advertisements-service` team has blamed the ops team.
 
-Using Datadog and APM trace library to instrumented our code, let's see what's really been breaking our application.
+We'll use the Datadog APM trace library to instrumented our code. Let's see what's *really* been breaking our application.
