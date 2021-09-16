@@ -13,7 +13,7 @@ if [ "$STATUS" != "complete" ]; then
   cd ../ecommworkshop
 
   # locked to specific commit on 2020-10-02
-  git checkout 9ce34516d9a65d6f09a6fffd5c4911a409d31e3f
+  #git checkout 9ce34516d9a65d6f09a6fffd5c4911a409d31e3f
   git reset --hard
 
   echo "complete">>/root/status.txt
