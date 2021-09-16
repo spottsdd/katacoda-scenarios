@@ -28,10 +28,10 @@ With this, we've added a Datadog Agent container, and along with it, volumes to 
 
 We've also added a `DD_API_KEY`, along with enabling logs and the process Agent. Finally, we've opened the port `8126`, where traces get shipped for collection at the Agent level.
 
-If we run the `env | grep ^DD` command in a new shell tab for our lab, we can see that our lab environment already has the Datadog API key injected into our scenario.
+If we run the `env | grep ^DD`{{execute}} command in a new shell tab for our lab, we can see that our lab environment already has the Datadog API key injected into our scenario.
 
 Speaking of which, in the yaml file we have a line, `DD_TAGS='env:ruby-shop'`. In this line, we've set an `env` tag for Datadog. This allows us to filter to a specific environment, and make sure we don't pollute other environments while testing.
 
 Now that the application has been running for a while, we should see data coming into the Datadog account. Navigate to the [Logs Live Tail](https://app.datadoghq.com/logs/livetail) page to see logs flowing into your account.
 
-Next, if we _were_ instrumenting an application from scratch, we'd need to add the Datadog APM library to each of our application level languages, and set environment variables to correctly configure our application.
+Next, if we *were* instrumenting an application from scratch, we'd need to add the Datadog APM trace library to each of our application level languages, and set environment variables to correctly configure our application.
