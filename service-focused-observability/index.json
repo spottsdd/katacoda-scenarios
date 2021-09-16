@@ -42,7 +42,7 @@
       }
   },
     "files": [
-        "/ecommworkshop/deploy/docker-compose/docker-compose-broken-no-instrumentation.yml"
+        "/ecommworkshop/deploy/docker-compose-files/docker-compose-broken-no-instrumentation.yml"
     ],
     "environment": {
       "uilayout": "editor-terminal",
@@ -53,6 +53,6 @@
       "dashboards": [{"name": "storedog", "port": 3000}]
     },
     "backend": {
-      "imageid": "datadog-ubuntu"
+      "imageid": "datadog-base-v3"
     }
   }
