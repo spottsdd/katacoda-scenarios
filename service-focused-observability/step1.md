@@ -16,7 +16,7 @@ In the terminal on the right, you'll see credentials for a newly provisioned Dat
 
 In the background at the start of this workshop, the repo for our application was cloned from Github. If we change into the directory, we should be able to start the code with the following:
 
-`cd ../ecommworkshop/docker-compose`{{execute}}
+`cd ../ecommworkshop/docker-compose-files`{{execute}}
 
 `POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres  docker-compose -f docker-compose-broken-instrumented.yml up`{{execute}}
 
