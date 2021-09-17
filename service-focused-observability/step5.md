@@ -1,12 +1,12 @@
 ## Adding Monitors to Our Services
 
-When we click into each of the services we've configured in APM, we see some default suggestions for monitors. 
+Navigate to the [Datadog Services list](https://app.datadoghq.com/apm/services) page. When we click into each of the services we've configured in APM, we see some default suggestions for monitors. 
 
 ![Suggested Monitors](./assets/suggest-monitors.png)
 
-Let's add one of these monitors so we can tell when our applications latency has risen too high, ensuring we are quickly alerted and are able to fix the issue quickly.
+Let's add one of these monitors so we can tell when our applications latency has risen too high, ensuring we are quickly alerted and are able to fix the issue.
 
-In this case, we are going to add the default, suggested `P90` latency monitors, so we can tell when things are taking too long to respond.
+In this case, we are going to enable the default suggested `P90` latency monitor to the `store-frontend`, so we can tell when things are taking too long to respond.
 
 ## Debugging an Application with Datadog
 
@@ -30,7 +30,7 @@ It seems the problem happens in a template. Let's get rid of that part of the te
 
 Our developers can see that they'll need to open `store-frontend-broken-instrumented/store-frontend/app/views/spree/layouts/spree_application.html.erb`{{open}} and delete the line under `<div class="container">`. It should begin with a `<br />` and end with a `</center>`.
 
-In this case, the banner ads were meant to be put under `store-frontend-broken-instrumented/store-frontend/app/views/spree/products/show.html.erb` and `store-frontend-broken-instrumented/store-frontend/app/views/spree/home/index.html.erb`{{open}}.
+In this case, the banner ads were meant to be put under `store-frontend-broken-instrumented/store-frontend/app/views/spree/products/show.html.erb`{{open}} and `store-frontend-broken-instrumented/store-frontend/app/views/spree/home/index.html.erb`{{open}}.
 
 For the `index.html.erb`, under `<div data-hook="homepage_products">` our developers would add the code:
 
