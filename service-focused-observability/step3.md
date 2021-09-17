@@ -1,10 +1,10 @@
 # Adding Distributed Tracing with APM
 
-As mentioned before, our code has already been set up with instrumentation from Datadog. 
+As mentioned before, our code has already been set up with Datadog APM instrumentation. 
 
 Depending on the programming language your application runs in, you may have a different process for instrumenting your code. It's always best to look at the [documentation](https://docs.datadoghq.com/tracing/setup/) for your specific language.
 
-In our case, our applications run on [Ruby on Rails](https://docs.datadoghq.com/tracing/setup/ruby/#rails) and Python's [Flask](http://pypi.datadoghq.com/trace/docs/web_integrations.html#flask). 
+In our case, our applications run on [Ruby on Rails](https://docs.datadoghq.com/tracing/setup_overview/setup/ruby/#quickstart-for-rails-applications) and Python's [Flask](https://ddtrace.readthedocs.io/en/stable/integrations.html#flask). 
 
 We'll instrument each language differently.
 
@@ -12,7 +12,7 @@ We'll instrument each language differently.
 
 For Ruby on Rails, we first added the `ddtrace` Gem to our Gemfile. Take a look at `store-frontend-broken-instrumented/store-frontend/Gemfile`{{open}} in the Katacoda file explorer, and notice we've added the Gem on line 46 so we can start shipping traces.
 
-Because we plan on also consuming logs from Rails and correlating them with traces, we've also added the `logging-rails` and `lograge` Gems on lines 48 and 49. Both of these are documented on the Ruby [trace / logs](https://docs.datadoghq.com/tracing/setup/ruby/#for-logging-in-rails-applications-using-lograge-recommended) correlation part of the documentation.
+Because we plan on also consuming logs from Rails and correlating them with traces, we've also added the `logging-rails` and `lograge` Gems on lines 48 and 49. Both of these are documented on the Ruby [trace / logs](https://docs.datadoghq.com/tracing/setup_overview/setup/ruby/#for-logging-in-rails-applications) correlation part of the documentation.
 
 Once these are both added to the list of our application's requirements, we must then add a `datadog.rb` to the list of initializers.
 
@@ -33,7 +33,7 @@ We set `analytics_enabled` to be `true` for both our Rails auto instrumentation,
 
 This allows us to use Trace Search and Analytics from within Datadog.
 
-By default, the Datadog Ruby APM library will ship traces to `localhost`, over port 8126. Because we're running within a `docker-compose`, we'll need to set an environment variable, `DD_AGENT_HOST`, for our Ruby library to know to ship to the Agent container instead.
+By default, the Datadog Ruby APM trace library will ship traces to `localhost`, over port 8126. Because we're running within a `docker-compose`, we'll need to set an environment variable, `DD_AGENT_HOST`, for our Ruby trace library to know to ship to the Agent container instead.
 
 With this, our Ruby application is instrumented. We're also able to continue traces downstream, utilizing Distributed Traces.
 
