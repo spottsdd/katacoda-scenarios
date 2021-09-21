@@ -24,9 +24,9 @@ If we open our `docker-compose-files/docker-compose-broken-instrumented.yml`{{op
       com.datadoghq.ad.logs: '[{"source": "datadog-agent", "service": "agent"}]'
 ```
 
-With this, we've added a Datadog Agent container, and along with it, volumes to see the resource usage on our host,  and the Docker socket so we can read all of the containers running on the host.
+In the above yaml, we've added a Datadog Agent container and along with it, volumes to see the resource usage on our host. We have also added the Docker socket so we can read all of the containers running on the host.
 
-We've also added a `DD_API_KEY`, along with enabling logs and the process Agent. Finally, we've opened the port `8126`, where traces get shipped for collection at the Agent level.
+In addition, on line 6, we created an `DD_API_KEY` along with enabling logs and the process Agent. Finally, on line 12 and 13, we've opened the port `8126` - where traces get shipped for collection at the Agent level.
 
 If we run the `env | grep ^DD`{{execute}} command in a new shell tab for our lab, we can see that our lab environment already has the Datadog API key injected into our scenario.
 
