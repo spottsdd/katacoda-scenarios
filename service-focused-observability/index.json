@@ -41,9 +41,6 @@
         "text": "finish.md"
       }
   },
-    "files": [
-        "/ecommworkshop/docker-compose-files/docker-compose-broken-no-instrumentation.yml"
-    ],
     "environment": {
       "uilayout": "editor-terminal",
       "uieditorpath": "/ecommworkshop",
