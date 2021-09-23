@@ -2,7 +2,7 @@
 
 With the [Service List](https://app.datadoghq.com/apm/services?env=ruby-shop), we can see at a quick glance see endpoints that are running slower than the rest. When working with a team migrating to microservices, this view can be a great first approach to breaking down existing problems.
 
-For example, if we look at the [Frontend Service](https://app.datadoghq.com/apm/service/store-frontend/rack.request?env=ruby-shop), we can see there are two endpoints in particular that are substantially slower than the rest. 
+For example, if we look at the [Frontend Service](https://app.datadoghq.com/apm/service/rack.request?env=ruby-shop), we can see there are two endpoints in particular that are substantially slower than the rest. 
 
 ![Slow Services](./assets/bottleneck.gif)
 

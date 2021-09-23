@@ -10,13 +10,13 @@ We'll instrument each language differently.
 
 ## Installing the APM Language Library
 
-For Ruby on Rails, we first added the `ddtrace` Gem to our Gemfile. Take a look at `/ecommworkshop/store-frontend-broken-instrumented/store-frontend/Gemfile`{{open}} in the Katacoda file explorer, and notice we've added the Gem on line 46 so we can start shipping traces.
+For Ruby on Rails, we first added the `ddtrace` Gem to our Gemfile. Take a look at `/ecommworkshop/store-frontend-broken-instrumented/Gemfile`{{open}} in the Katacoda file explorer, and notice we've added the Gem on line 46 so we can start shipping traces.
 
 Because we plan on also consuming logs from Rails and correlating them with traces, we've also added the `logging-rails` and `lograge` Gems on lines 48 and 49. Both of these are documented on the Ruby [trace / logs](https://docs.datadoghq.com/tracing/setup_overview/setup/ruby/#for-logging-in-rails-applications) correlation part of the documentation.
 
 Once these are both added to the list of our application's requirements, we must then add a `datadog.rb` to the list of initializers.
 
-You'll find the file in `/ecommworkshop/store-frontend-broken-instrumented/store-frontend/config/initializers/datadog.rb`{{open}}.
+You'll find the file in `/ecommworkshop/store-frontend-broken-instrumented/config/initializers/datadog.rb`{{open}}.
 
 There, we control a few settings:
 
@@ -41,7 +41,7 @@ With this, our Ruby application is instrumented. We're also able to continue tra
 
 To ship logs to Datadog, we've got to ensure they're converted to JSON format. This allows for filtering by specific parameters within Datadog.
 
-Within our `/ecommworkshop/store-frontend-broken-instrumented/store-frontend/config/environments/development.rb`{{open}}, there is some specific code to ship our logs along with the the correlated traces. You can see this code on lines 15-28:
+Within our `/ecommworkshop/store-frontend-broken-instrumented/config/environments/development.rb`{{open}}, there is some specific code to ship our logs along with the the correlated traces. You can see this code on lines 15-28:
 
 ```ruby
   config.lograge.custom_options = lambda do |event|
