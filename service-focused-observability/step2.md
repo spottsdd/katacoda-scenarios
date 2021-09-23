@@ -2,7 +2,7 @@ Whenever working with new code, it can be daunting to understand a system and ho
 
 Datadog instrumentation allows us to get an immediate view into what's going on with our software systems, and begin exploring places that may need improvement.
 
-If we open our `docker-compose-files/docker-compose-broken-instrumented.yml`{{open}} file, we can begin to understand how instrumentation is done with our application:
+If we open our `/deploy/docker-compose-files/docker-compose-broken-instrumented.yml`{{open}} file, we can begin to understand how instrumentation is done with our application:
 
 ```
   agent:

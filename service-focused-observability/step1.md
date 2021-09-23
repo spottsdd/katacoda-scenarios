@@ -16,9 +16,9 @@ In the terminal on the right, you'll see credentials for a newly provisioned Dat
 
 In the background at the start of this workshop, the repo for our application was cloned from Github. If we change into the directory, we should be able to start the code with the following:
 
-`cd ../ecommworkshop/docker-compose-files`{{execute}}
+`cd ../ecommworkshop/deploy/docker-compose-files`{{execute}}
 
-`POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres  docker-compose -f docker-compose-broken-instrumented.yml up`{{execute}}
+`POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres docker-compose -f docker-compose-broken-instrumented.yml up`{{execute}}
 
 Once our images are pulled, we will be able to view the application. You can either:
 
@@ -36,7 +36,7 @@ We've got a capture of "production" traffic using GoReplay. In our `/ecommworksh
 
 Click the "+" sign next to the `storedog` tab, and open a new terminal:
 
-`cd /ecommworkshop`{{execute}}
+`cd /ecommworkshop/deploy/`{{execute}}
 
 `./gor --input-file-loop --input-file requests_0.gor --output-http "http://localhost:3000"`{{execute}}
 
