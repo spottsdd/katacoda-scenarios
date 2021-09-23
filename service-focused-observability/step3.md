@@ -41,7 +41,7 @@ With this, our Ruby application is instrumented. We're also able to continue tra
 
 To ship logs to Datadog, we've got to ensure they're converted to JSON format. This allows for filtering by specific parameters within Datadog.
 
-Within our `store-frontend-broken-instrumented/store-frontend/config/development.rb`{{open}}, we can copy and paste some specific code to ship our logs along with the correlating traces:
+Within our `store-frontend-broken-instrumented/store-frontend/config/environments/development.rb`{{open}}, there is some specific code to ship our logs along with the the correlated traces. You can see this code on lines 15-28:
 
 ```ruby
   config.lograge.custom_options = lambda do |event|
