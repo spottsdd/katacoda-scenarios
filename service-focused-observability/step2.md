@@ -30,7 +30,7 @@ In addition, on line 6, we created an `DD_API_KEY` along with enabling logs and 
 
 If we run the `env | grep ^DD`{{execute}} command in a new shell tab for our lab, we can see that our lab environment already has the Datadog API key injected into our scenario.
 
-Speaking of which, in the yaml file we have a line, `DD_TAGS='env:ruby-shop'`. In this line, we've set an `env` tag for Datadog. This allows us to filter to a specific environment, and make sure we don't pollute other environments while testing.
+On line 11 in our yaml file, we set `DD_TAGS='env:ruby-shop'`. In this line, we've set an `env` tag for Datadog. This allows us to filter to a specific environment, and make sure we don't pollute other environments while testing.
 
 Now that the application has been running for a while, we should see data coming into the Datadog account. Navigate to the [Logs Live Tail](https://app.datadoghq.com/logs/livetail) page to see logs flowing into your account.
 
