@@ -36,9 +36,9 @@ We've got a capture of "production" traffic using GoReplay. In our `/ecommworksh
 
 Click the "+" sign next to the `storedog` tab, and open a new terminal:
 
-`cd /ecommworkshop/deploy/`{{execute}}
+`cd ../ecommworkshop/deploy/docker-compose`{{execute}}
 
-`./gor --input-file-loop --input-file requests_0.gor --output-http "http://localhost:3000"`{{execute}}
+`docker-compose -f docker-compose-traffic-replay.yml up`{{execute}}
 
 Once the traffic replay begins, we can take a look at the issues we've seen since the new team rolled out their first few microservices.
 
