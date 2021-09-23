@@ -14,7 +14,7 @@ Let's bring down our docker-compose terminal, by pressing `CTRL+c`, and then edi
 
 There should be a line of code which states what happened, with a fix. Find the route definition that matches `/discount`, and edit the `discounts-service/discounts.py`{{open}} file, and see if the changes written work. The suggested changes should be in a comment right under the view definition.
 
-With this, we've now made a great first attempt at improving the experience for our users. Let's update our version number in our `docker-compose-files/docker-compose-broken-instrumented.yml`{{open}} to `1.1` for the `discounts` service.
+With this, we've now made a great first attempt at improving the experience for our users. Let's update our version number in our `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}} to `1.1` for the `discounts` service.
 
 While we're here, let's also enable profiling on both of our Python microservices by adding a `DD_PROFILING_ENABLED=true` to the set of environment variables.
 

@@ -47,7 +47,7 @@ And for the `show.html.erb` at the very bottom add:
 
 We can assume our developers have done that, and deploy the code changes with our new Docker image name, `ddtraining/ecommerce-frontend:latest`.
 
-Edit the `docker-compose-files/docker-compose-broken-instrumented.yml`{{open}}, changing the `frontend` service to point to the:
+Edit the `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}}, changing the `frontend` service to point to the:
 
 ```
   image: "ddtraining/ecommerce-frontend:latest"
