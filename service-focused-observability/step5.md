@@ -1,13 +1,3 @@
-## Adding Monitors to Our Services
-
-Navigate to the [Datadog Services list](https://app.datadoghq.com/apm/services) page. When we click into each of the services we've configured in APM, we see some default suggestions for monitors. 
-
-![Suggested Monitors](./assets/suggest-monitors.png)
-
-Let's add one of these monitors so we can tell when our applications latency has risen too high, ensuring we are quickly alerted and are able to fix the issue.
-
-In this case, we are going to enable the default suggested `P90` latency monitor to the `store-frontend`, so we can tell when things are taking too long to respond.
-
 ## Debugging an Application with Datadog
 
 The first place we can check is the Service Map, to get an idea for our current infrastructure and microservice dependencies.

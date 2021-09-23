@@ -19,3 +19,13 @@ With this, we've now made a great first attempt at improving the experience for 
 While we're here, let's also enable profiling on both of our Python microservices by adding a `DD_PROFILING_ENABLED=true` to the set of environment variables.
 
 With this, we can now spin back up our application, and see the difference in traces between our previous and current improvements.
+
+## Adding Monitors to Our Services
+
+Navigate to the [Datadog Services list](https://app.datadoghq.com/apm/services) page. When we click into each of the services we've configured in APM, we see some default suggestions for monitors. 
+
+![Suggested Monitors](./assets/suggest-monitors.png)
+
+Let's add one of these monitors so we can tell when our applications latency has risen too high, ensuring we are quickly alerted and are able to fix the issue.
+
+In this case, we are going to enable the default suggested `P90` latency monitor to the `store-frontend`, so we can tell when things are taking too long to respond.
