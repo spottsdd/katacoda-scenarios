@@ -23,6 +23,6 @@ sed -i '1i config.lograge.custom_options = lambda do |event|
       :ddsource => ["ruby"],
       :params => event.payload[:params].reject { |k| %w(controller action).include? k }
     }
-  end' /ecommworkshop/store-frontend-broken-instrumented/store-frontend/config/development.rb
+  end' ../ecommworkshop/store-frontend-broken-instrumented/store-frontend/config/development.rb
 
 statusupdate complete
