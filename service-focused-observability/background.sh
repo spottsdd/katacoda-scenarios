@@ -10,7 +10,7 @@ cd ../ecommworkshop
 git checkout 9ce34516d9a65d6f09a6fffd5c4911a409d31e3f
 git reset --hard
 
-sed -i '1i config.lograge.custom_options = lambda do |event|
+sudo sed -i '1i config.lograge.custom_options = lambda do |event|
     # Retrieves trace information for current thread
     correlation = Datadog.tracer.active_correlation
 
