@@ -32,9 +32,9 @@ Take a moment to navigate the site. Try browsing around, and notice the homepage
 
 ## Generating Traffic for Our Site
 
-We've got a capture of "production" traffic using GoReplay. In our `/ecommworkshop` folder, you'll find a copy of [GoReplay](https://goreplay.org). Let's spin up an infinite loop of that traffic.
+We've got a capture of "production" traffic using GoReplay. In our `/ecommworkshop/deploy/docker-compose` folder, you will see a container we created called `docker-compose-traffic-replay`. This container will send "production" traffic to our application on a consistent basis to help generate data for us on the platform.
 
-Click the "+" sign next to the `storedog` tab, and open a new terminal:
+Click the "+" sign next to the `storedog` tab. Next, click `Open New Terminal`.
 
 `cd ../ecommworkshop/deploy/docker-compose`{{execute}}
 
