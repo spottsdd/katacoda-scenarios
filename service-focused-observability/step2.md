@@ -30,8 +30,8 @@ In addition, on line 6, we created an `DD_API_KEY` along with enabling logs and 
 
 If we run the `env | grep ^DD`{{execute}} command in a new shell tab for our lab, we can see that our lab environment already has the Datadog API key injected into our scenario.
 
-On line 11 in our yaml file, we set `DD_TAGS='env:ruby-shop'`. In this line, we've set an `env` tag for Datadog. This allows us to filter to a specific environment, and make sure we don't pollute other environments while testing.
+On line 11 in our yaml file, we set `DD_TAGS='env:ruby-shop'`. In this line, we've set an `env` tag for Datadog that allows us to filter to a specific environment, making sure we don't pollute other environments while testing.
 
 Now that the application has been running for a while, we should see data coming into the Datadog account. Navigate to the [Logs Live Tail](https://app.datadoghq.com/logs/livetail) page to see logs flowing into your account.
 
-Next, if we *were* instrumenting an application from scratch, we'd need to add the Datadog APM trace library to each of our application level languages, and set environment variables to correctly configure our application.
+In the next step, we will look at what is needed to add the Datadog APM trace library to each of our application level languages, and set environment variables to correctly configure our application.
