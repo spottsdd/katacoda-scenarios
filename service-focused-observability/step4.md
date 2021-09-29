@@ -20,18 +20,20 @@ The `ddtrace` Python library includes an executable that allows us to automatica
 
 With this, we're now ready to *configure* our application's instrumentation.
 
-Automatic instrumentation is done via environment variables in our `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}} starting on line 70:
+Automatic instrumentation is done via environment variables in our `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}} starting on line 72:
 
 ```
       - DATADOG_SERVICE=advertisements-service
       - DD_AGENT_HOST=agent
       - DD_LOGS_INJECTION=true
+      - DD_TRACE_ANALYTICS_ENABLED=true
+      - DD_PROFILING_ENABLED=true
       - DD_VERSION=1.0
 ```
 
 With this, we've connected and instrumented all of our services to APM.
 
-The last thing we need to add is a *label* to our container, so our logs are sent with the label of the service, and with the proper language pipeline processor on line 85:
+The last thing we need to add is a *label* to our container, so our logs are sent with the label of the service, and with the proper language pipeline processor on line 86:
 
 
 ```
