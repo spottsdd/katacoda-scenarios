@@ -24,9 +24,9 @@ It seems the problem happens in a template. Let's get rid of that part of the te
 
 ![Trace Errors](./assets/trace-details-error-message.png)
 
-Our developers can see that they'll need to open `/ecommworkshop/store-frontend-broken-instrumented/app/views/spree/layouts/spree_application.html.erb`{{open}} and delete the line under `<div class="container">`. It should begin with a `<br />` and end with a `</center>`.
+Our developers can see that they'll need to open `/ecommworkshop/store-frontend/src/store-frontend-initial-state/app/views/spree/layouts/spree_application.html.erb`{{open}} and delete the line under `<div class="container">`. It should begin with a `<br />` and end with a `</center>`.
 
-In this case, the banner ads were meant to be put under `/ecommworkshop/store-frontend-broken-instrumented/app/views/spree/products/show.html.erb`{{open}} and `store-frontend-broken-instrumented/app/views/spree/home/index.html.erb`{{open}}.
+In this case, the banner ads were meant to be put under `/ecommworkshop/store-frontend/src/store-frontend-initial-state/app/views/spree/products/show.html.erb`{{open}} and `/ecommworkshop/store-frontend/src/store-frontend-initial-state/app/views/spree/home/index.html.erb`{{open}}.
 
 For the `index.html.erb`, under `<div data-hook="homepage_products">` our developers would add the code:
 
@@ -41,13 +41,15 @@ And for the `show.html.erb` at the very bottom add:
 <br /><center><a href="<%= @ads['url'] %>"><img src="data:image/png;base64,<%= @ads['base64'] %>" /></a></center><br />
 ```
 
-We can assume our developers have done that, and deploy the code changes with our new Docker image name, `ddtraining/ecommerce-frontend:latest`.
+We can assume our developers have done that, and deploy the code changes with our new Docker image name, `ddtraining/storefront-fixed:latest`.
 
 Edit the `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}}, changing the `frontend` service to point to the:
 
 ```
-  image: "ddtraining/ecommerce-frontend:latest"
+  image: "ddtraining/storefront-fixed:latest"
 ```
+
+It's also a good recommendation to update the `DD_VERSION` so that we can track performance changes across version.
 
 With that, we can spin up our project. Let's see if there's anything else going on. Click back over to our original terminal where our application is currently running and dumping logs and stop it with `ctrl + C`. Next run:
 
