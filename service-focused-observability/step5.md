@@ -49,6 +49,13 @@ Edit the `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}}
   image: "ddtraining/storefront-fixed:latest"
 ```
 
+We'll need to remove lines 57 and 58:
+
+```
+  volumes:
+    - "../../store-frontend/src/store-frontend-broken-instrumented:/app"
+```
+
 It's also a good recommendation to update the `DD_VERSION` so that we can track performance changes across version.
 
 With that, we can spin up our project. Let's see if there's anything else going on. Click back over to our original terminal where our application is currently running and dumping logs and stop it with `ctrl + C`. Next run:
