@@ -6,17 +6,23 @@ The first place we can check is the Service Map, to get an idea for our current 
 
 In doing so, we can tell that we've got two microservices that our frontend calls, a `discounts-service`, along with an `advertisements-service`.
 
-If we click in to view our Service Overview in Datadog, we can see that our API itself isn't throwing any errors. The errors must be happening on the frontend.
+If we navigate to our Service List in Datadog, we can see that our API itself isn't throwing any errors. The errors must be happening on the frontend.
 
 ![Services List](./assets/problematic-service.gif)
 
 So let's take a look at the frontend service, and see if we can find the spot where things are breaking.
 
-If we look into the service, we can see that it's been laid out by views. There's at least one view that seems to only give errors. Let's click into that view and see if a trace from that view can tell us what's going on.
+If we look into the service, we can see that it's been laid out by views. There's at least one view that seems to only give errors.
 
-![Problematic Traces](./assets/500-trace-errors.png)
+![Endpoints](./assets/store-frontend_endpoints.png)
+
+Let's click into that view and see if a trace from that view can tell us what's going on.
+
+![Problematic Traces](./assets/store-frontend_Spree_OrdersController-trace-errors.png)
 
 It seems the problem happens in a template. Let's get rid of that part of the template so we can get the site back up and running while figuring out what happened.
+
+[Trace Errors](./assets/trace-details-error-message.png)
 
 Our developers can see that they'll need to open `/ecommworkshop/store-frontend-broken-instrumented/app/views/spree/layouts/spree_application.html.erb`{{open}} and delete the line under `<div class="container">`. It should begin with a `<br />` and end with a `</center>`.
 
