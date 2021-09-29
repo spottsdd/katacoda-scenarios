@@ -22,7 +22,7 @@ Let's click into that view and see if a trace from that view can tell us what's 
 
 It seems the problem happens in a template. Let's get rid of that part of the template so we can get the site back up and running while figuring out what happened.
 
-[Trace Errors](./assets/trace-details-error-message.png)
+![Trace Errors](./assets/trace-details-error-message.png)
 
 Our developers can see that they'll need to open `/ecommworkshop/store-frontend-broken-instrumented/app/views/spree/layouts/spree_application.html.erb`{{open}} and delete the line under `<div class="container">`. It should begin with a `<br />` and end with a `</center>`.
 
