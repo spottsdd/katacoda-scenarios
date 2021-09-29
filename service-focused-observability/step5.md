@@ -24,9 +24,9 @@ It seems the problem happens in a template. Let's get rid of that part of the te
 
 ![Trace Errors](./assets/trace-details-error-message.png)
 
-Our developers can see that they'll need to open `/ecommworkshop/store-frontend/src/store-frontend-initial-state/app/views/spree/layouts/spree_application.html.erb`{{open}} and delete the line under `<div class="container">`. It should begin with a `<br />` and end with a `</center>`.
+Our developers can see that they'll need to open `/ecommworkshop/store-frontend-broken-instrumented/app/views/spree/layouts/spree_application.html.erb`{{open}} and delete the line under `<div class="container">`. It should begin with a `<br />` and end with a `</center>`.
 
-In this case, the banner ads were meant to be put under `/ecommworkshop/store-frontend/src/store-frontend-initial-state/app/views/spree/products/show.html.erb`{{open}} and `/ecommworkshop/store-frontend/src/store-frontend-initial-state/app/views/spree/home/index.html.erb`{{open}}.
+In this case, the banner ads were meant to be put under `/ecommworkshop/store-frontend-broken-instrumented/app/views/spree/products/show.html.erb`{{open}} and `/ecommworkshop/store-frontend-broken-instrumented/app/views/spree/home/index.html.erb`{{open}}.
 
 For the `index.html.erb`, under `<div data-hook="homepage_products">` our developers would add the code:
 
