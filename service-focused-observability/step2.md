@@ -6,14 +6,14 @@ If we open our `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{
 
 ```
   agent:
-    image: "datadog/agent:7.21.1"
+    image: "datadog/agent:7.29.0"
     environment:
       - DD_API_KEY
       - DD_APM_ENABLED=true
       - DD_LOGS_ENABLED=true
       - DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL=true
       - DD_PROCESS_AGENT_ENABLED=true
-      - DD_TAGS='env:ruby-shop'
+      - DD_TAGS='env:development'
     ports:
       - "8126:8126"
     volumes:
@@ -30,7 +30,7 @@ In addition, on line 6, we created an `DD_API_KEY` along with enabling logs and 
 
 If we run the `env | grep ^DD`{{execute}} command in a new shell tab for our lab, we can see that our lab environment already has the Datadog API key injected into our scenario.
 
-On line 11 in our yaml file, we set `DD_TAGS='env:ruby-shop'`. In this line, we've set an `env` tag for Datadog that allows us to filter to a specific environment, making sure we don't pollute other environments while testing.
+On line 11 in our yaml file, we set `DD_TAGS='env:development'`. In this line, we've set an `env` tag for Datadog that allows us to filter to a specific environment, making sure we don't pollute other environments while testing.
 
 Now that the application has been running for a while, we should see data coming into the Datadog account. Navigate to the [Logs Live Tail](https://app.datadoghq.com/logs/livetail) page to see logs flowing into your account.
 

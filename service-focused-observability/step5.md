@@ -6,21 +6,27 @@ The first place we can check is the Service Map, to get an idea for our current 
 
 In doing so, we can tell that we've got two microservices that our frontend calls, a `discounts-service`, along with an `advertisements-service`.
 
-If we click in to view our Service Overview in Datadog, we can see that our API itself isn't throwing any errors. The errors must be happening on the frontend.
+If we navigate to our Service List in Datadog, we can see that our API itself isn't throwing any errors. The errors must be happening on the frontend.
 
 ![Services List](./assets/problematic-service.gif)
 
 So let's take a look at the frontend service, and see if we can find the spot where things are breaking.
 
-If we look into the service, we can see that it's been laid out by views. There's at least one view that seems to only give errors. Let's click into that view and see if a trace from that view can tell us what's going on.
+If we look into the service, we can see that it's been laid out by views. There's at least one view that seems to only give errors.
 
-![Problematic Traces](./assets/500-trace-errors.png)
+![Endpoints](./assets/store-frontend_endpoints.png)
+
+Let's click into that view and see if a trace from that view can tell us what's going on.
+
+![Problematic Traces](./assets/store-frontend_Spree_OrdersController-trace-errors.png)
 
 It seems the problem happens in a template. Let's get rid of that part of the template so we can get the site back up and running while figuring out what happened.
 
-Our developers can see that they'll need to open `/ecommworkshop/store-frontend-broken-instrumented/app/views/spree/layouts/spree_application.html.erb`{{open}} and delete the line under `<div class="container">`. It should begin with a `<br />` and end with a `</center>`.
+![Trace Errors](./assets/trace-details-error-message.png)
 
-In this case, the banner ads were meant to be put under `/ecommworkshop/store-frontend-broken-instrumented/app/views/spree/products/show.html.erb`{{open}} and `store-frontend-broken-instrumented/app/views/spree/home/index.html.erb`{{open}}.
+Our developers can see that they'll need to open `/store-frontend-broken-instrumented/app/views/spree/layouts/spree_application.html.erb`{{open}} and delete the line under `<div class="container">`. It should begin with a `<br />` and end with a `</center>`.
+
+In this case, the banner ads were meant to be put under `/store-frontend-broken-instrumented/app/views/spree/products/show.html.erb`{{open}} and `/store-frontend-broken-instrumented/app/views/spree/home/index.html.erb`{{open}}.
 
 For the `index.html.erb`, under `<div data-hook="homepage_products">` our developers would add the code:
 
@@ -35,13 +41,22 @@ And for the `show.html.erb` at the very bottom add:
 <br /><center><a href="<%= @ads['url'] %>"><img src="data:image/png;base64,<%= @ads['base64'] %>" /></a></center><br />
 ```
 
-We can assume our developers have done that, and deploy the code changes with our new Docker image name, `ddtraining/ecommerce-frontend:latest`.
+We can assume our developers have done that, and deploy the code changes with our new Docker image name, `ddtraining/storefront-fixed:latest`.
 
 Edit the `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}}, changing the `frontend` service to point to the:
 
 ```
-  image: "ddtraining/ecommerce-frontend:latest"
+  image: "ddtraining/storefront-fixed:latest"
 ```
+
+We'll need to remove lines 57 and 58:
+
+```
+  volumes:
+    - "../../store-frontend/src/store-frontend-broken-instrumented:/app"
+```
+
+It's also a good recommendation to update the `DD_VERSION` so that we can track performance changes across version.
 
 With that, we can spin up our project. Let's see if there's anything else going on. Click back over to our original terminal where our application is currently running and dumping logs and stop it with `ctrl + C`. Next run:
 
