@@ -29,9 +29,9 @@ Datadog.configure do |c|
 end
 ```
 
-We set `analytics_enabled` to be `true` for both our Rails auto instrumentation, and the `http` instrumentation.
+We set `DD_TRACE_SAMPLE_RATE` to be `1.0` for both our Rails auto instrumentation, and the `http` instrumentation.
 
-This allows us to use Trace Search and Analytics from within Datadog.
+This allows us to use Tracing without Limits™ for Trace Search and Analytics from within Datadog.
 
 By default, the Datadog Ruby APM trace library will ship traces to `localhost`, over port 8126. Because we're running within a `docker-compose`, we'll need to set an environment variable, `DD_AGENT_HOST`, for our Ruby trace library to know to ship to the Agent container instead.
 
