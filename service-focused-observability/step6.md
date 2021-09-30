@@ -21,4 +21,5 @@ Before we restart the services, open the `/deploy/docker-compose/docker-compose-
 `POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres  docker-compose -f docker-compose-broken-instrumented.yml up`{{execute}}
 
 What sort of an improvement in page load time did it give you? Can you graph the differences over time?
+
 **Hint:** We'll want to look at the `/ads` endpoint of the `advertisements-service`.
