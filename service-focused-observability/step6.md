@@ -6,18 +6,19 @@ For example, if we look at the [Frontend Service](https://app.datadoghq.com/apm/
 
 ![Slow Services](./assets/bottleneck.gif)
 
-Both the `HomeController#index` and the `ProductController#show` enpoints are showing _much_ longer latency times. If we click in and view a trace, we'll see that we've got downstream microservices taking up a substantial portion of our load time.
+Both the `HomeController#index` and the `ProductController#show` enpoints are showing *much* longer latency times. If we click in and view a trace, we'll see that we've got a downstream microservice taking up a substantial portion of our time.
 
-Use the span list to see where it may be, and we can then take a look at each of the downstream services and where things may be going wrong.
+![Flame Graph](./assets/store-frontend_flame-graph.png)
 
-It seems two microservices in particular are being called for the homepage. We can see both the `advertisements-service` and `discounts-service` are each taking over 2.5 seconds for each request. Let's look within their specific urls to see if there isn't something amiss.
+It seems the `advertisements-service` is taking over 2.5 seconds for each request. Click on the Spans to look at the Tags for the specific url and path group, then we'll check the code to see if we can spot the problem.
 
-Look into the spans for the `discounts-service` to try finding the specific route with a 2.5 second delay, and then open the file: `discounts-service/discounts.py`{{open}}
+The path group is `/ads`. Search through the source code in the file: `ads-service/ads.py`{{open}}
 
-Looking at the code, it appears we've accidentally left a line in from testing what happens if latency goes up. 
+Looking at the code, it appears we've accidentally left a line in from testing what happens if latency goes up. Try spotting the line and removing the code to see if you can bring the latency down again.
 
-Try spotting the line and removing the code to see if you can bring the latency down again for the application. 
+Before we restart the services, open the `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}} file and find the `advertisements` settings. Bump the `DD_VERSION` then restart the service using  `ctrl + C`. Next run:
 
-We can do the same with the `advertisements-service`, again finding the Flask view based upon the span, and then searching through the source code in `ads-service/ads.py`{{open}}
+`POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres  docker-compose -f docker-compose-broken-instrumented.yml up`{{execute}}
 
 What sort of an improvement in page load time did it give you? Can you graph the differences over time?
+**Hint:** We'll want to look at the `/ads` endpoint of the `advertisements-service`.
