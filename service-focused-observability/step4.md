@@ -10,7 +10,7 @@ For supported applications like Flask, `ddtrace-run` dramatically simplifies the
 
 ## Instrumenting the Advertisements Service
 
-In our `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}} there's a command to bring up our Flask server. If we look at line 76, we'll see:
+In our `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}} there's a command to bring up our Flask server. If we look at line 80, we'll see:
 
 ```
 ddtrace-run flask run --port=5002 --host=0.0.0.0
@@ -28,6 +28,7 @@ Automatic instrumentation is done via environment variables in our `/deploy/dock
       - DD_LOGS_INJECTION=true
       - DD_TRACE_ANALYTICS_ENABLED=true
       - DD_PROFILING_ENABLED=true
+      - DD_TRACE_SAMPLE_RATE=1.0
       - DD_VERSION=1.0
 ```
 
