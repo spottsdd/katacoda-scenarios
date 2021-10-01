@@ -29,7 +29,7 @@ With this, we can now spin back up our application, and see the difference in tr
 
 ## Adding Monitors to Our Services
 
-Navigate to the [Datadog Services list](https://app.datadoghq.com/apm/services) page. When we click into each of the services we've configured in APM, we see some default suggestions for monitors. These monitors can oversee different aspects of our services to ensure we have visibility into our application, even when we are not looking. We can configure a monitor and allow it to observe our application, sending alerts to those necessary when it's triggered.
+Navigate to the [Datadog Services list](https://app.datadoghq.com/apm/services) page. When we hover over each of the services, we see *View Suggested* under the *Monitors* column. These are built-in monitors that can be quickly and easily created for our services. Monitors can oversee different aspects of our services to ensure we have visibility into our application, even when we are not looking. We can configure a monitor and allow it to observe our application, sending alerts to various channels when it's triggered.
 
 ![Suggested Monitors](./assets/suggest-monitors.png)
 
