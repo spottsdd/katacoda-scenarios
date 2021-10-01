@@ -58,8 +58,9 @@ We'll need to remove lines 57 and 58:
 
 It's also a good recommendation to update the `DD_VERSION` so that we can track performance changes across version.
 
-With that, we can spin up our project. Let's see if there's anything else going on. Click back over to our original terminal where our application is currently running and dumping logs and stop it with `ctrl + C`. Next run:
+With that, we can spin up our project. Let's see if there's anything else going on. Click back over to our original terminal where our application is currently running and dumping logs and stop it with `ctrl + C`.
 
+Next run:
 `POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres  docker-compose -f docker-compose-broken-instrumented.yml up`{{execute}}
 
 This will spin up our application using the changes made to the `yml` file.
