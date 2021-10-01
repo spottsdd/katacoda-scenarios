@@ -1,8 +1,16 @@
 # Discovering a Suboptimal SQL Query
 
-As noted before, with the Service List, we can see at a quick glance see endpoints that are running slower than the rest.
+As we've already seen, on the Service Overview, we can see at a glance endpoints that are running slower than the rest.
 
-Now that we've got the time down on our requests, let's see if we can fix one more problematic SQL query.
+Now that we've reduced the response time on our `/ads` requests, let's see if we can fix one more problematic endpoint.
+
+Let's look at the Store-Frontend service's `HomeController#index` again. The `advertisements-service` is no longer taking up so much time, but we see another service is still taking up a lot of time during the trace.
+
+![Flame Graph](./assets/store-frontend_flame-graph_discounts-service.png)
+
+Jump to the Resource page by clicking on the `flask.request GET /discount` span. Above the Tags click the kebab menu icon to directly access the Resource page.
+
+![Kebab Menu](./assets/)
 
 See if you can spot anything specific in the Span Summary page under the `GET /discount` route of the `discouts-service`. Is there a specific span that's occuring much more often than the others? Maybe something with a higher Average Spans per trace?
 
