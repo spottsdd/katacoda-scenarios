@@ -10,21 +10,20 @@ Let's look at the Store-Frontend service's `HomeController#index` again. The `ad
 
 Jump to the Resource page by clicking on the `flask.request GET /discount` span. Above the Tags click the kebab menu icon to directly access the Resource page.
 
-![Kebab Menu](./assets/)
+![Kebab Menu](./assets/kebab-menu.png)
 
-See if you can spot anything specific in the Span Summary page under the `GET /discount` route of the `discouts-service`. Is there a specific span that's occuring much more often than the others? Maybe something with a higher Average Spans per trace?
+Look over the Span Summary page. Is there a specific span that's occurring much more often than the others? Maybe something with a higher Average Spans per trace?
 
-It looks like we've got a classic N+1 query on our `discounts-service`. If you scroll in on a trace, there appears to be a _lot_ of trips to the database for each request.
+It looks like we've got a classic N+1 query on our `discounts-service`. From the Trace Flame Graph, there appears to be a *lot* of trips to the database for each request. We can likely improve this performance by reducing these multiple trips to the database.
 
-It seems the last developer didn't realize the way they structured their code meant making multiple trips to the database when there shouldn't have been. 
+Open the source code file: `discounts-service/discounts.py`{{open}} and locate the `flask_request.method == 'GET'` section. There will be a line of code which states what happened, with a fix. Uncomment the suggested changes right under the view definition, and comment out line 29.
 
-Let's bring down our docker-compose terminal, by pressing `CTRL+c`, and then edit the Python file that defines our application.
+With this, we've now made a great first attempt at improving the experience for our users. Let's update the `DD_VERSION` number in `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}} to `1.1` for the `discounts` service.
 
-There should be a line of code which states what happened, with a fix. Find the route definition that matches `/discount`, and edit the `discounts-service/discounts.py`{{open}} file, and see if the changes written work. The suggested changes should be in a comment right under the view definition.
+Restart the service using  `ctrl + C`.
 
-With this, we've now made a great first attempt at improving the experience for our users. Let's update our version number in our `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}} to `1.1` for the `discounts` service.
-
-While we're here, let's also enable profiling on both of our Python microservices by adding a `DD_PROFILING_ENABLED=true` to the set of environment variables.
+Next run:
+`POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres  docker-compose -f docker-compose-broken-instrumented.yml up`{{execute}}
 
 With this, we can now spin back up our application, and see the difference in traces between our previous and current improvements.
 
