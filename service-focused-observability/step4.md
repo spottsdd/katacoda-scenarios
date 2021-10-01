@@ -1,5 +1,3 @@
-# APM Automatic Instrumentation with Python
-
 Now that we've set up our main Ruby on Rails application, we can now instrument our downstream Python services.
 
 Looking at the [documentation](https://ddtrace.readthedocs.io/en/stable/integrations.html#flask) for the Python tracer, we have a utility called `ddtrace-run`. 

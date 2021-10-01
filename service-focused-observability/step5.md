@@ -1,5 +1,3 @@
-## Debugging an Application with Datadog
-
 The first place we can check is the Service Map, to get an idea for our current infrastructure and microservice dependencies.
 
 ![Datadog Service Map](./assets/service-map.png)

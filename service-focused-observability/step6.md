@@ -1,6 +1,4 @@
-# Communicating Observability Practices to Your Team
-
-With the [Service List](https://app.datadoghq.com/apm/services), we can see at a quick glance see endpoints that are running slower than the rest. When working with a team migrating to microservices, this view can be a great first approach to breaking down existing problems.
+With the [Service List](https://app.datadoghq.com/apm/services), we get a high level view of overall service performance. We can quickly see services that are running slower than the rest. When working with a team migrating to microservices, this view can be a great first approach to breaking down existing problems.
 
 For example, if we look at the [Frontend Service](https://app.datadoghq.com/apm/service/store-frontend), we can see there are two endpoints in particular that are substantially slower than the rest. 
 

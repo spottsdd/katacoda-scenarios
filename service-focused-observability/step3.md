@@ -1,5 +1,3 @@
-# Adding Distributed Tracing with APM
-
 As mentioned before, our code has already been set up with Datadog APM instrumentation. 
 
 Depending on the programming language your application runs in, you may have a different process for instrumenting your code. It's always best to look at the [documentation](https://docs.datadoghq.com/tracing/setup/) for your specific language.

@@ -1,5 +1,3 @@
-# Discovering a Suboptimal SQL Query
-
 As we've already seen, on the Service Overview, we can see at a glance endpoints that are running slower than the rest.
 
 Now that we've reduced the response time on our `/ads` requests, let's see if we can fix one more problematic endpoint.
