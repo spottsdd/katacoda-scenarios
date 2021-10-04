@@ -47,7 +47,7 @@ Edit the `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}}
   image: "ddtraining/storefront-fixed:latest"
 ```
 
-We'll need to remove lines 57 and 58:
+We'll need to remove lines 58 and 59:
 
 ```
   volumes:
