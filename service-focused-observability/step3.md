@@ -10,11 +10,7 @@ We'll instrument each language differently.
 
 For Ruby on Rails, we first added the `ddtrace` Gem to our Gemfile. Take a look at `store-frontend-broken-instrumented/Gemfile`{{open}} in the Katacoda file explorer, and notice we've added the Gem on line 46 so we can start shipping traces.
 
-Because we plan on also consuming logs from Rails and correlating them with traces, we've also added the `logging-rails` and `lograge` Gems on lines 48 and 49. Both of these are documented on the Ruby [trace / logs](https://docs.datadoghq.com/tracing/setup_overview/setup/ruby/#for-logging-in-rails-applications) correlation part of the documentation.
-
-Once these are both added to the list of our application's requirements, we must then add a `datadog.rb` to the list of initializers.
-
-You'll find the file in `store-frontend-broken-instrumented/config/initializers/datadog.rb`{{open}}.
+To enable the Rails instrumentation, create an initializer file in your config/initializers folder. You'll find the file in `store-frontend-broken-instrumented/config/initializers/datadog.rb`{{open}}.
 
 There, we control a few settings:
 
