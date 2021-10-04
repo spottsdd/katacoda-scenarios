@@ -14,7 +14,7 @@ In the terminal on the right, you'll see credentials for a newly provisioned Dat
 
 ## Starting Storedog
 
-In the background at the start of this workshop, the repo for our application was cloned from Github. If we change into the directory, we should be able to start the code with the following:
+At the start of this workshop the repo for our application was cloned in the background from Github. If we change into the directory, we can start the code with the following:
 
 `cd ../ecommworkshop/deploy/docker-compose`{{execute}}
 
@@ -40,8 +40,8 @@ Click the "+" sign next to the `storedog` tab. Next, click `Open New Terminal`.
 
 `docker-compose -f docker-compose-traffic-replay.yml up`{{execute}}
 
-Once the traffic replay begins, we can take a look at the issues we've seen since the new team rolled out their first few microservices.
+Once the traffic replay begins, we can take a look at the issues we've seen since the team rolled out their first few microservices.
 
-There have been reports that the new `advertisements-service` broke the website. With the new deployment on staging, the `frontend` team has blamed the `ads-service` team, and the `advertisements-service` team has blamed the ops team.
+There have been reports that the new `advertisements-service` broke the website after the new deployment in the development environment. The `frontend` team has blamed the `ads-service` team, and the `advertisements-service` team has blamed the ops team.
 
 We'll use the Datadog APM trace library to instrumented our code. Let's see what's *really* been breaking our application.
