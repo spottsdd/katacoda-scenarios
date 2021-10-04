@@ -23,33 +23,13 @@ Datadog.configure do |c|
 end
 ```
 
-## Shipping Logs Correlated with Traces
+## Additional Settings
 
-To ship logs to Datadog, we've got to ensure they're converted to JSON format. This allows for filtering by specific parameters within Datadog.
+Open the `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}} file.
 
-Within our `store-frontend-broken-instrumented/config/environments/development.rb`{{open}}, there is some specific code to ship our logs along with the the correlated traces. You can see this code on lines 15-28:
+By default, the Datadog Ruby APM trace library will ship traces to `localhost`, over port 8126. Because we're running within a `docker-compose`, we'll need to set an environment variable, `DD_AGENT_HOST`, for our Ruby trace library to know to ship to the `agent` container instead. You'll find this on line 44.
 
-```ruby
-  config.lograge.custom_options = lambda do |event|
-    # Retrieves trace information for current thread
-    correlation = Datadog.tracer.active_correlation
-  
-    {
-      # Adds IDs as tags to log output
-      :dd => {
-        :trace_id => correlation.trace_id,
-        :span_id => correlation.span_id
-      },
-      :ddsource => ["ruby"],
-      :params => event.payload[:params].reject { |k| %w(controller action).include? k }
-    }
-  end
-```
-We set `DD_TRACE_SAMPLE_RATE` to be `1.0` for both our Rails auto instrumentation, and the `http` instrumentation.
-
-This allows us to use Tracing without Limits™ for Trace Search and Analytics from within Datadog.
-
-By default, the Datadog Ruby APM trace library will ship traces to `localhost`, over port 8126. Because we're running within a `docker-compose`, we'll need to set an environment variable, `DD_AGENT_HOST`, for our Ruby trace library to know to ship to the Agent container instead.
+We also want to set `DD_TRACE_SAMPLE_RATE` to be `1.0`. This allows us to use [Tracing without Limits™](https://docs.datadoghq.com/tracing/trace_retention_and_ingestion/) for Trace Search and Analytics from within Datadog.
 
 With this, our Ruby application is instrumented. We're also able to continue traces downstream, utilizing Distributed Traces.
 
