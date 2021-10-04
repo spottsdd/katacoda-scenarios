@@ -23,14 +23,6 @@ Datadog.configure do |c|
 end
 ```
 
-We set `DD_TRACE_SAMPLE_RATE` to be `1.0` for both our Rails auto instrumentation, and the `http` instrumentation.
-
-This allows us to use Tracing without Limits™ for Trace Search and Analytics from within Datadog.
-
-By default, the Datadog Ruby APM trace library will ship traces to `localhost`, over port 8126. Because we're running within a `docker-compose`, we'll need to set an environment variable, `DD_AGENT_HOST`, for our Ruby trace library to know to ship to the Agent container instead.
-
-With this, our Ruby application is instrumented. We're also able to continue traces downstream, utilizing Distributed Traces.
-
 ## Shipping Logs Correlated with Traces
 
 To ship logs to Datadog, we've got to ensure they're converted to JSON format. This allows for filtering by specific parameters within Datadog.
@@ -53,5 +45,12 @@ Within our `store-frontend-broken-instrumented/config/environments/development.r
     }
   end
 ```
+We set `DD_TRACE_SAMPLE_RATE` to be `1.0` for both our Rails auto instrumentation, and the `http` instrumentation.
+
+This allows us to use Tracing without Limits™ for Trace Search and Analytics from within Datadog.
+
+By default, the Datadog Ruby APM trace library will ship traces to `localhost`, over port 8126. Because we're running within a `docker-compose`, we'll need to set an environment variable, `DD_AGENT_HOST`, for our Ruby trace library to know to ship to the Agent container instead.
+
+With this, our Ruby application is instrumented. We're also able to continue traces downstream, utilizing Distributed Traces.
 
 Next, let's look at how a Python application is instrumented.
