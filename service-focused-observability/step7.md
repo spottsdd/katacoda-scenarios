@@ -1,28 +1,33 @@
-# Discovering a Suboptimal SQL Query
+As we've already seen, on the Service Overview, we can see at a glance endpoints that are running slower than the rest.
 
-As noted before, with the Service List, we can see at a quick glance see endpoints that are running slower than the rest.
+Now that we've reduced the response time on our `/ads` requests, let's see if we can fix one more problematic endpoint.
 
-Now that we've got the time down on our requests, let's see if we can fix one more problematic SQL query.
+Let's look at the Store-Frontend service's `HomeController#index` again. The `advertisements-service` is no longer taking up so much time, but we see another service is still taking up a lot of time during the trace.
 
-See if you can spot anything specific in the Span Summary page under the `GET /discount` route of the `discouts-service`. Is there a specific span that's occuring much more often than the others? Maybe something with a higher Average Spans per trace?
+![Flame Graph](./assets/store-frontend_flame-graph_discounts-service.png)
 
-It looks like we've got a classic N+1 query on our `discounts-service`. If you scroll in on a trace, there appears to be a _lot_ of trips to the database for each request.
+Jump to the Resource page by clicking on the `flask.request GET /discount` span. Above the Tags click the kebab menu icon to directly access the Resource page.
 
-It seems the last developer didn't realize the way they structured their code meant making multiple trips to the database when there shouldn't have been. 
+![Kebab Menu](./assets/kebab-menu.png)
 
-Let's bring down our docker-compose terminal, by pressing `CTRL+c`, and then edit the Python file that defines our application.
+Look over the Span Summary page. Is there a specific span that's occurring much more often than the others? Maybe something with a higher Average Spans per trace?
 
-There should be a line of code which states what happened, with a fix. Find the route definition that matches `/discount`, and edit the `discounts-service/discounts.py`{{open}} file, and see if the changes written work. The suggested changes should be in a comment right under the view definition.
+It looks like we've got a classic N+1 query on our `discounts-service`. From the Trace Flame Graph, there appears to be a *lot* of trips to the database for each request. We can likely improve this performance by reducing these multiple trips to the database.
 
-With this, we've now made a great first attempt at improving the experience for our users. Let's update our version number in our `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}} to `1.1` for the `discounts` service.
+Open the source code file: `discounts-service/discounts.py`{{open}} and locate the `flask_request.method == 'GET'` section. There will be a line of code which states what happened, with a fix. Uncomment the suggested changes right under the view definition, and comment out line 29.
 
-While we're here, let's also enable profiling on both of our Python microservices by adding a `DD_PROFILING_ENABLED=true` to the set of environment variables.
+With this, we've now made a great first attempt at improving the experience for our users. Let's update the `DD_VERSION` number in `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}} to `1.1` for the `discounts` service.
+
+Restart the service using  `ctrl + C`.
+
+Next run:
+`POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres  docker-compose -f docker-compose-broken-instrumented.yml up`{{execute}}
 
 With this, we can now spin back up our application, and see the difference in traces between our previous and current improvements.
 
 ## Adding Monitors to Our Services
 
-Navigate to the [Datadog Services list](https://app.datadoghq.com/apm/services) page. When we click into each of the services we've configured in APM, we see some default suggestions for monitors. These monitors can oversee different aspects of our services to ensure we have visibility into our application, even when we are not looking. We can configure a monitor and allow it to observe our application, sending alerts to those necessary when it's triggered.
+Navigate to the [Datadog Services list](https://app.datadoghq.com/apm/services) page. When we hover over each of the services, we see *View Suggested* under the *Monitors* column. These are built-in monitors that can be quickly and easily created for our services. Monitors can oversee different aspects of our services to ensure we have visibility into our application, even when we are not looking. We can configure a monitor and allow it to observe our application, sending alerts to various channels when it's triggered.
 
 ![Suggested Monitors](./assets/suggest-monitors.png)
 

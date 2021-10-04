@@ -4,7 +4,7 @@
   "details": {
       "steps": [
         {
-          "title": "Start up Storedog",
+          "title": "Start up the environment: Storedog",
           "text": "step1.md"
         },
         {
@@ -12,19 +12,19 @@
           "text": "step2.md"
         },
         {
-          "title": "Establishing A Baseline for Systems",
+          "title": "Adding Distributed Tracing with APM",
           "text": "step3.md"
         },
         {
-          "title": "Discovering Bottlenecks",
+          "title": "APM Automatic Instrumentation with Python",
           "text": "step4.md"
         },
         {
-          "title": "Deploying and Quantifying Improvements",
+          "title": "Debugging an Application with Datadog",
           "text": "step5.md"
         },
         {
-          "title": "Communicating Observability Practices to Your Team",
+          "title": "Discovering Bottlenecks",
           "text": "step6.md"
         },
         {
