@@ -61,6 +61,6 @@ With that, we can spin up our project. Let's see if there's anything else going 
 Next run:
 `POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres  docker-compose -f docker-compose-broken-instrumented.yml up`{{execute}}
 
-This will spin up our application using the changes made to the `yml` file.
+This will spin up our application using the changes made to the yaml file.
 
 
