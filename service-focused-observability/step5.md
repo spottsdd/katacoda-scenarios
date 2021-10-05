@@ -54,7 +54,7 @@ We'll need to remove lines 57 and 58:
     - "../../store-frontend/src/store-frontend-broken-instrumented:/app"
 ```
 
-It's also a good recommendation to update the `DD_VERSION` so that we can track performance changes across version.
+It's also a good recommendation to update the `DD_VERSION` so that we can track performance changes across versions.
 
 With that, we can spin up our project. Let's see if there's anything else going on. Click back over to our original terminal where our application is currently running and dumping logs and stop it with `ctrl + C`.
 
