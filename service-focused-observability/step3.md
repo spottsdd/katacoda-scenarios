@@ -6,15 +6,19 @@ In our case, our applications run on [Ruby on Rails](https://docs.datadoghq.com/
 
 We'll instrument each language differently.
 
-## Installing the APM Language Library
+## Installing the Ruby APM Language Library
 
-For Ruby on Rails, we first added the `ddtrace` Gem to our Gemfile. Take a look at `store-frontend-broken-instrumented/Gemfile`{{open}} in the Katacoda file explorer, and notice we've added the Gem on line 46 so we can start shipping traces.
+The `store-frontend` service has a Rails framework. The first step for instrumentation is to install the required Ruby tracing and log libraries. Next, an initializer file is added to enable Rails instrumentation, followed by a configuration file to ship logs to Datadog in JSON format so that Datadog can filter the logs based on special parameters. Finally, the docker-compose file is updated for trace and log collection and App Analytics for the frontend service.
 
-Because we plan on also consuming logs from Rails and correlating them with traces, we've also added the `logging-rails` and `lograge` Gems on lines 48 and 49. Both of these are documented on the Ruby [trace / logs](https://docs.datadoghq.com/tracing/setup_overview/setup/ruby/#for-logging-in-rails-applications) correlation part of the documentation.
+The store-frontend service has been instrumented for you, but you will update the docker-compose.yml. Let's first go through the instrumentation.
 
-Once these are both added to the list of our application's requirements, we must then add a `datadog.rb` to the list of initializers.
+Take a look at `store-frontend-broken-instrumented/Gemfile`{{open}} in the Katacoda file explorer.
 
-You'll find the file in `store-frontend-broken-instrumented/config/initializers/datadog.rb`{{open}}.
+**Line 46** installs the `ddtrace` Gem, which is [Datadog’s tracing client for Ruby](https://docs.datadoghq.com/tracing/setup/ruby/). The `ddtrace` library traces requests as they flow across web servers, databases, and microservices so that developers have high visibility into bottlenecks and troublesome requests.
+
+**Line 49** installs the `rails_semantic_logger` Gem, which is a feature rich replacement for the Ruby and Rails loggers. To learn more, view the [rails_semantic_logger](https://logger.rocketjob.io/) documentation.
+
+To enable the Rails instrumentation, create an initializer file in your config/initializers folder. You'll find our file in `store-frontend-broken-instrumented/config/initializers/datadog.rb`{{open}}.
 
 There, we control a few settings:
 
@@ -27,35 +31,14 @@ Datadog.configure do |c|
 end
 ```
 
-We set `DD_TRACE_SAMPLE_RATE` to be `1.0` for both our Rails auto instrumentation, and the `http` instrumentation.
+## Additional Settings
 
-This allows us to use Tracing without Limits™ for Trace Search and Analytics from within Datadog.
+Open the `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}} file.
 
-By default, the Datadog Ruby APM trace library will ship traces to `localhost`, over port 8126. Because we're running within a `docker-compose`, we'll need to set an environment variable, `DD_AGENT_HOST`, for our Ruby trace library to know to ship to the Agent container instead.
+By default, the Datadog Ruby APM trace library will ship traces to `localhost`, over port 8126. Because we're running within a `docker-compose`, we'll need to set an environment variable, `DD_AGENT_HOST`, for our Ruby trace library to know to ship to the `agent` container instead. You'll find this on line 44.
+
+We also want to set `DD_TRACE_SAMPLE_RATE` to be `1.0`. This allows us to use [Tracing without Limits™](https://docs.datadoghq.com/tracing/trace_retention_and_ingestion/) for Trace Search and Analytics from within Datadog.
 
 With this, our Ruby application is instrumented. We're also able to continue traces downstream, utilizing Distributed Traces.
-
-## Shipping Logs Correlated with Traces
-
-To ship logs to Datadog, we've got to ensure they're converted to JSON format. This allows for filtering by specific parameters within Datadog.
-
-Within our `store-frontend-broken-instrumented/config/environments/development.rb`{{open}}, there is some specific code to ship our logs along with the the correlated traces. You can see this code on lines 15-28:
-
-```ruby
-  config.lograge.custom_options = lambda do |event|
-    # Retrieves trace information for current thread
-    correlation = Datadog.tracer.active_correlation
-  
-    {
-      # Adds IDs as tags to log output
-      :dd => {
-        :trace_id => correlation.trace_id,
-        :span_id => correlation.span_id
-      },
-      :ddsource => ["ruby"],
-      :params => event.payload[:params].reject { |k| %w(controller action).include? k }
-    }
-  end
-```
 
 Next, let's look at how a Python application is instrumented.

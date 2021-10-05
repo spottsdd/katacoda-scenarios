@@ -1,6 +1,6 @@
 # Service Focused Observability with Distributed Tracing
 
-In this workshop, we'll apply observability principles to a partially broken eCommerce app who's team has started the move to microservices.
+In this workshop, we'll apply observability principles to a partially broken eCommerce app, Storedog, deployed using Docker. The app is built using a Rails framework along with Python Flask microservices for handling coupon codes and ad services. This activity provides you with a walkthrough of the instrumentation using the following steps.
 
 We'll first run the app, confirm that it's broken, and then review how to instrument with Datadog APM.
 
