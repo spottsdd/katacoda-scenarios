@@ -16,6 +16,8 @@ cd /root/lab
 ln -s /ecommworkshop/discounts-service/discounts.py
 ln -s /ecommworkshop/ads-service/ads.py
 
+
+ln -s /ecommworkshop/store-frontend-broken-instrumented/Gemfile
 ln -s /ecommworkshop/store-frontend-broken-instrumented/app/views/spree/layouts/spree_application.html.erb
 ln -s /ecommworkshop/store-frontend-broken-instrumented/app/views/spree/products/show.html.erb
 ln -s /ecommworkshop/store-frontend-broken-instrumented/config/initializers/datadog.rb
