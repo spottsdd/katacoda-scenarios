@@ -18,22 +18,22 @@ Let's click into that view and see if a trace from that view can tell us what's 
 
 ![Problematic Traces](./assets/store-frontend_Spree_OrdersController-trace-errors.png)
 
-It seems the problem happens in a template. Let's get rid of that part of the template so we can get the site back up and running while figuring out what happened. Thankfully our developers will handle this for us, but lets take a look at the work they will have to do to fix it.
+It seems the problem happens in a template. Let's get rid of that part of the template so we can get the site back up and running while figuring out what happened.
 
 ![Trace Errors](./assets/trace-details-error-message.png)
 
-Our developers can see that they'll need to open `spree_application.html.erb`{{open}} and delete the line under `<div class="container">`. It should begin with a `<br />` and end with a `</center>`.
+Our developers can see that they'll need to open `/store-frontend-broken-instrumented/app/views/spree/layouts/spree_application.html.erb`{{open}} and delete the line under `<div class="container">`. It should begin with a `<br />` and end with a `</center>`.
 
-In this case, the banner ads were meant to be put under `show.html.erb`{{open}} and `index.html.erb`{{open}}.
+In this case, the banner ads were meant to be put under `/store-frontend-broken-instrumented/app/views/spree/products/show.html.erb`{{open}} and `/store-frontend-broken-instrumented/app/views/spree/home/index.html.erb`{{open}}.
 
-1. For the `index.html.erb`, under `<div data-hook="homepage_products">` our developers would add the code:
+For the `index.html.erb`, under `<div data-hook="homepage_products">` our developers would add the code:
 
 ```ruby
 <br /><center><a href="<%= @ads['url'] %>"><img src="data:image/png;base64,<%= @ads['base64'] %>" /></a></center>
 
 ```
 
-1. For the `show.html.erb` at the very bottom they will add:
+And for the `show.html.erb` at the very bottom add:
 
 ```ruby 
 <br /><center><a href="<%= @ads['url'] %>"><img src="data:image/png;base64,<%= @ads['base64'] %>" /></a></center><br />
@@ -41,7 +41,7 @@ In this case, the banner ads were meant to be put under `show.html.erb`{{open}} 
 
 We can assume our developers have done that, and deploy the code changes with our new Docker image name, `ddtraining/storefront-fixed:latest`.
 
-Edit the `docker-compose.yml`{{open}}, changing the `frontend` service to point to the:
+Edit the `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}}, changing the `frontend` service to point to the:
 
 ```
   image: "ddtraining/storefront-fixed:latest"
@@ -52,7 +52,7 @@ It's also a good recommendation to update the `DD_VERSION` so that we can track 
 With that, we can spin up our project. Let's see if there's anything else going on. Click back over to our original terminal where our application is currently running and dumping logs and stop it with `ctrl + C`.
 
 Next run:
-`docker-compose up -d`{{execute}}
+`POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres  docker-compose -f docker-compose-broken-instrumented.yml up`{{execute}}
 
 This will spin up our application using the changes made to the yaml file.
 
