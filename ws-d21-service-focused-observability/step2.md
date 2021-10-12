@@ -6,22 +6,20 @@ If we open our `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{
 
 ```
   agent:
-    image: "datadog/agent:7.29.0"
+    image: 'datadog/agent:7.31.1'
     environment:
       - DD_API_KEY
-      - DD_APM_ENABLED=true
       - DD_LOGS_ENABLED=true
-      - DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL=true
       - DD_PROCESS_AGENT_ENABLED=true
-      - DD_TAGS='env:development'
+      - DD_DOCKER_LABELS_AS_TAGS={"my.custom.label.team":"team"}
+      - DD_TAGS='env:sfo101'
+      - DD_APM_NON_LOCAL_TRAFFIC=true
     ports:
-      - "8126:8126"
+      - 127.0.0.1:8126:8126/tcp
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /proc/:/host/proc/:ro
       - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
-    labels:
-      com.datadoghq.ad.logs: '[{"source": "datadog-agent", "service": "agent"}]'
 ```
 
 In the above yaml, we've added a Datadog Agent container and along with it, volumes to see the resource usage on our host. We have also added the Docker socket so we can read all of the containers running on the host.
@@ -30,7 +28,7 @@ In addition, on line 6, we created an `DD_API_KEY` along with enabling logs and 
 
 If we run the `env | grep ^DD`{{execute}} command in a new shell tab for our lab, we can see that our lab environment already has the Datadog API key injected into our scenario.
 
-On line 11 in our yaml file, we set `DD_TAGS='env:development'`. In this line, we've set an `env` tag for Datadog that allows us to filter to a specific environment, making sure we don't pollute other environments while testing.
+On line 11 in our yaml file, we set `DD_TAGS='env:sfo101'`. In this line, we've set an `env` tag for Datadog that allows us to filter to a specific environment, making sure we don't pollute other environments while testing.
 
 Now that the application has been running for a while, we should see data coming into the Datadog account. Navigate to the [Logs Live Tail](https://app.datadoghq.com/logs/livetail) page to see logs flowing into your account.
 

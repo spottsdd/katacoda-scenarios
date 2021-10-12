@@ -41,11 +41,7 @@ The last thing we need to add is a *label* to our container, so our logs are sen
       com.datadoghq.ad.logs: '[{"source": "python", "service": "advertisements-service"}]'
 ```
 
-<<<<<<< HEAD
-We can repeat the process, and fill out the settings for the `discounts-service` starting on line 20:
-=======
 We can see similar settings for the `discounts-service` starting on line 18:
->>>>>>> bbea304bf4a568421f1f40837301255d741ddb1c
 
 ```
   discounts:
@@ -54,22 +50,33 @@ We can see similar settings for the `discounts-service` starting on line 18:
       - FLASK_DEBUG=1
       - POSTGRES_PASSWORD
       - POSTGRES_USER
-      - DATADOG_SERVICE_NAME=discounts-service
-      - DATADOG_TRACE_AGENT_HOSTNAME=agent
+      - POSTGRES_HOST=db
+      - DD_SERVICE=discounts-service
+      - DD_ENV=sfo101
       - DD_LOGS_INJECTION=true
-    image: "ddtraining/discounts-service:latest"
-    command: ddtrace-run flask run --port=5001 --host=0.0.0.0
+      - DD_TRACE_SAMPLE_RATE=1
+      - DD_PROFILING_ENABLED=true
+      - DD_AGENT_HOST=datadog 
+    image: 'ddtraining/discounts:2.0.0'
+    command:
+      [
+        sh,
+        -c,
+        'ddtrace-run flask run --port=5001 --host=0.0.0.0',
+      ]
     ports:
-      - "5001:5001"
-    volumes:
-      - "./discounts-service:/app"
+      - '5001:5001'
     depends_on:
       - agent
       - db
     labels:
+      com.datadoghq.tags.env: 'sfo101'
+      com.datadoghq.tags.service: 'discounts-service'
+      com.datadoghq.tags.version: '2.0'
+      my.custom.label.team: 'discounts'
       com.datadoghq.ad.logs: '[{"source": "python", "service": "discounts-service"}]'
 ```
 
-To verify for yourself, take a look at the `discounts-service/discounts.py`{{open}} file. You'll see there's no reference to Datadog at all.
+To verify for yourself, take a look at the `discounts.py`{{open}} file. You'll see there's no reference to Datadog at all.
 
 Now that we've fully instrumented our applications, let's hop back in to Datadog to take a closer look at *why* and *where* our application may be failing.
