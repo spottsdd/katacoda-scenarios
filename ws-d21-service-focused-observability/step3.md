@@ -10,7 +10,7 @@ We'll instrument each language differently.
 
 The `store-frontend` service has a Rails framework. The first step for instrumentation is to install the required Ruby tracing and log libraries. Next, an initializer file is added to enable Rails instrumentation, followed by a configuration file to ship logs to Datadog in JSON format so that Datadog can filter the logs based on special parameters. Finally, the docker-compose file is updated for trace and log collection and App Analytics for the frontend service.
 
-The store-frontend service has been instrumented for you. Let's review the instrumentation.
+The store-frontend service has been instrumented for you, but you will update the docker-compose.yml. Let's first go through the instrumentation.
 
 Take a look at `store-frontend-broken-instrumented/Gemfile`{{open}} in the Katacoda file explorer.
 
@@ -18,7 +18,7 @@ Take a look at `store-frontend-broken-instrumented/Gemfile`{{open}} in the Katac
 
 **Line 49** installs the `rails_semantic_logger` Gem, which is a feature rich replacement for the Ruby and Rails loggers. To learn more, view the [rails_semantic_logger](https://logger.rocketjob.io/) documentation.
 
-To enable the Rails instrumentation, an initializer file was created in the config/initializers folder. Open the file `datadog.rb`{{open}}.
+To enable the Rails instrumentation, create an initializer file in your config/initializers folder. Open the file `datadog.rb`{{open}}.
 
 There, we control a few settings:
 
@@ -35,9 +35,9 @@ end
 
 Open the `docker-compose.yml`{{open}} file.
 
-By default, the Datadog Ruby APM trace library will ship traces to `localhost`, over port 8126. Because we're running within `docker-compose`, we needed to set an environment variable, `DD_AGENT_HOST`, for our Ruby trace library to know to ship to the `agent` container instead. You'll find this on line 57.
+By default, the Datadog Ruby APM trace library will ship traces to `localhost`, over port 8126. Because we're running within a `docker-compose`, we'll need to set an environment variable, `DD_AGENT_HOST`, for our Ruby trace library to know to ship to the `agent` container instead. You'll find this on line 56.
 
-We've also added `DD_TRACE_SAMPLE_RATE` and set it to be `1`. This allows us to use [Tracing without Limits™](https://docs.datadoghq.com/tracing/trace_retention_and_ingestion/) for Trace Search and Analytics from within Datadog.
+We also want to set `DD_TRACE_SAMPLE_RATE` to be `1`. This allows us to use [Tracing without Limits™](https://docs.datadoghq.com/tracing/trace_retention_and_ingestion/) for Trace Search and Analytics from within Datadog.
 
 With this, our Ruby application is instrumented. We're also able to continue traces downstream, utilizing Distributed Traces.
 
