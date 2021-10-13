@@ -1,4 +1,4 @@
-The first place we can check is the Service Map, to get an idea for our current infrastructure and microservice dependencies.
+We'll start by looking at the Service Map, to get an idea for our current infrastructure and microservice dependencies.
 
 ![Datadog Service Map](./assets/service-map.png)
 
@@ -22,36 +22,39 @@ It seems the problem happens in a template. Let's get rid of that part of the te
 
 ![Trace Errors](./assets/trace-details-error-message.png)
 
+## Reviewing Code Changes for the Fix
+
+After passing this information to our developers, they reported the following fixes have been deployed to a new Docker image named `ddtraining/storefront-fixed:latest`. Let's review these fixes before updating and deploying the new image.
+
 Our developers can see that they'll need to open `spree_application.html.erb`{{open}} and delete the line under `<div class="container">`. It should begin with a `<br />` and end with a `</center>`.
 
-In this case, the banner ads were meant to be put under `show.html.erb`{{open}} and `index.html.erb`{{open}}.
+In this case, the banner ads were meant to be put under `show.html.erb`{{open}} and `index.html.erb`{{open}}
 
-For the `index.html.erb`, under `<div data-hook="homepage_products">` our developers would add the code:
+For the `index.html.erb`, under `<div data-hook="homepage_products">` our developers added the code:
 
 ```ruby
 <br /><center><a href="<%= @ads['url'] %>"><img src="data:image/png;base64,<%= @ads['base64'] %>" /></a></center>
 
 ```
 
-And for the `show.html.erb` at the very bottom add:
+And for `show.html.erb` this was added to the very bottom:
 
 ```ruby 
 <br /><center><a href="<%= @ads['url'] %>"><img src="data:image/png;base64,<%= @ads['base64'] %>" /></a></center><br />
 ```
 
-We can assume our developers have done that, and deploy the code changes with our new Docker image name, `ddtraining/storefront-fixed:latest`.
+## Deploying the Fixed Code
 
-Edit the `docker-compose.yml`{{open}}, changing the `frontend` service to point to the:
+Since this code has already been deployed to the new Docker image `ddtraining/storefront-fixed:latest`, we just need to update our config to use the new image.
+
+Edit the `docker-compose.yml`{{open}}, changing the `frontend` image on line 59:
 
 ```
   image: "ddtraining/storefront-fixed:2.0.0"
 ```
 
-It's also a good recommendation to update the `DD_VERSION` so that we can track performance changes across versions.
+It's also recommended to update the `DD_VERSION` so that we can track performance changes across versions. Let's set this to `2.1`.
 
-With that, we can spin up our project. Let's see if there's anything else going on. Click back over to our original terminal where our application is currently running and dumping logs and stop it with `ctrl + C`.
-
-Next run:
-`docker-compose up -d`{{execute}}
+With that, we can spin up our project. Let's see if there's anything else going on. Click back over to our original terminal and restart our environment with: `docker-compose up -d`{{execute}}
 
 This will spin up our application using the changes made to the yaml file.
