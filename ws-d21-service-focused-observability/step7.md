@@ -14,13 +14,10 @@ Look over the Span Summary page. Is there a specific span that's occurring much 
 
 It looks like we've got a classic N+1 query on our `discounts-service`. From the Trace Flame Graph, there appears to be a *lot* of trips to the database for each request. We can likely improve this performance by reducing these multiple trips to the database.
 
-Open the source code file: `discounts-service/discounts.py`{{open}} and locate the `flask_request.method == 'GET'` section. There will be a line of code which states what happened, with a fix. Uncomment the suggested changes right under the view definition, and comment out line 29.
+Open the source code file: `discounts.py`{{open}} and locate the `flask_request.method == 'GET'` section. There will be a line of code which states what happened, with a fix. Uncomment the suggested changes right under the view definition, and comment out line 29.
 
-With this, we've now made a great first attempt at improving the experience for our users. Let's update the `DD_VERSION` number in `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}} to `1.1` for the `discounts` service.
+With this, we've now made a great first attempt at improving the experience for our users. Let's once again update the `DD_VERSION` number in `docker-compose.yml`{{open}}. Find the `discounts` service block at line 18. Bump the `DD_VERSION` to `2.1`.
 
-Restart the service using  `ctrl + C`.
-
-Next run:
-`POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres  docker-compose -f docker-compose-broken-instrumented.yml up`{{execute}}
+Restart the service using: `docker-compose up -d`{{execute}}
 
 With this, we can now spin back up our application, and see the difference in traces between our previous and current improvements.
