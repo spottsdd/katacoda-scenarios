@@ -8,7 +8,7 @@ For supported applications like Flask, `ddtrace-run` dramatically simplifies the
 
 ## Instrumenting the Advertisements Service
 
-In our `docker-compose.yml`{{open}} there's a command to bring up our Flask server. If we look at line 94, we'll see:
+In our `docker-compose.yml`{{open}} there's a command to bring up our Flask server. If we look at line 91, we'll see:
 
 ```
 ddtrace-run flask run --port=5002 --host=0.0.0.0
@@ -18,7 +18,7 @@ The `ddtrace` Python library includes an executable that allows us to automatica
 
 With this, we're now ready to *configure* our application's instrumentation.
 
-Automatic instrumentation is done via environment variables in our `/deploy/docker-compose/docker-compose-broken-instrumented.yml`{{open}} starting on line 72:
+Automatic instrumentation is done via environment variables in our `docker-compose.yml`{{open}} starting on line 73:
 
 ```
       - DATADOG_SERVICE=advertisements-service
@@ -30,7 +30,7 @@ Automatic instrumentation is done via environment variables in our `/deploy/dock
       - DD_VERSION=1.0
 ```
 
-The last thing we need to add is a *label* to our container, so our logs are sent with the label of the service, and with the proper language pipeline processor on line 101:
+The last thing we need to add is a *label* to our container, so our logs are sent with the label of the service, and with the proper language pipeline processor starting on line 98:
 
 ```
     labels:
