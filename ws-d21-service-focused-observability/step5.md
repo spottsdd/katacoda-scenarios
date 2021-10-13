@@ -55,5 +55,3 @@ Next run:
 `docker-compose up -d`{{execute}}
 
 This will spin up our application using the changes made to the yaml file.
-
-

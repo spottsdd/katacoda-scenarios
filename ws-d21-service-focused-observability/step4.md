@@ -79,4 +79,4 @@ We can see similar settings for the `discounts-service` starting on line 18:
 
 To verify for yourself, take a look at the `discounts.py`{{open}} file. You'll see there's no reference to Datadog at all.
 
-Now that we've fully instrumented our applications, let's hop back in to Datadog to take a closer look at *why* and *where* our application may be failing.
+Now that we've fully instrumented our services, let's hop back in to Datadog to take a closer look at *why* and *where* our application may be failing.
