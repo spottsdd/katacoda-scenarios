@@ -10,7 +10,7 @@ Both the `HomeController#index` and the `ProductController#show` enpoints are sh
 
 It seems the `advertisements-service` is taking over 2.5 seconds for each request. Click on the Spans to look at the Tags for the specific url and path group, then we'll check the code to see if we can spot the problem.
 
-The path group is `/ads`. Search through the source code in the file: `ads-service/ads.py`{{open}}
+The path group is `/ads`. Search through the source code in the file: `ads.py`{{open}}
 
 Looking at the code, it appears we've accidentally left a line in from testing what happens if latency goes up. Try spotting the line and removing the code to see if you can bring the latency down again.
 
