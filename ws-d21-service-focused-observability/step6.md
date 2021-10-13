@@ -8,17 +8,19 @@ Both the `HomeController#index` and the `ProductController#show` enpoints are sh
 
 ![Flame Graph](./assets/store-frontend_flame-graph.png)
 
+
 It seems the `advertisements-service` is taking over 2.5 seconds for each request. Click on the Spans to look at the Tags for the specific url and path group, then we'll check the code to see if we can spot the problem.
 
-The path group is `/ads`. Search through the source code in the file: `ads.py`{{open}}
+The path group is `/ads`. The source code for this path is in the file: `ads.py`{{open}}
 
 Looking at the code, it appears we've accidentally left a line in from testing what happens if latency goes up. Try spotting the line and removing the code to see if you can bring the latency down again.
 
-Before we restart the services, open the `docker-compose -d`{{open}} file and find the `advertisements` settings. Bump the `DD_VERSION` then restart the service using  `ctrl + C`.
+Since this is a simple fix, let's take care of this on our own.
 
-Next run:
-`docker-compose up -d`{{execute}}
+**Hint:** Look for `flask_request.method == 'GET'` 
 
-What sort of an improvement in page load time did it give you? Can you graph the differences over time?
+Before we restart the services, open the `docker-compose`{{open}} file and find the `advertisements` settings starting on line 73. Bump the `DD_VERSION` to `2.1` then restart the service using `docker-compose up -d`{{execute}}
+
+What sort of an improvement in page load time do you see now? Can you graph the differences over time?
 
 **Hint:** We'll want to look at the `/ads` endpoint of the `advertisements-service`.
