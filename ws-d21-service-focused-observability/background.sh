@@ -16,9 +16,10 @@ cd /root/lab
 ln -s /ecommworkshop/discounts-service/discounts.py
 ln -s /ecommworkshop/ads-service/ads.py
 
-ln -s /ecommworkshop/store-frontend-broken-instrumented/app/views/sprees/layouts/spree_application.html.erb
-ln -s /ecommworkshop/store-frontend-broken-instrumented/app/views/sprees/products/show.html.erb
-ln -s /ecommworkshop/store-frontend-broken-instrumented/config/initializers/datadog.rb
+ln -s /ecommworkshop/store-frontend-broken-instrumented/app/views/spree/layouts/spree_application.html.erb
+ln -s /ecommworkshop/store-frontend-broken-instrumented/app/views/spree/products/show.html.erb
+ln -s /ecommworkshop/store-frontend-broken-instrumented/config/initializer/datadog.rb
+ln -s /ecommworkshop/store-frontend-broken-instrumented/Gemile
 
 sed -i "s/'analytics_enabled': true, //" ./store-frontend-broken-instrumented/config/initializers/datadog.rb
 

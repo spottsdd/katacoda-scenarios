@@ -55,6 +55,6 @@ Edit the `docker-compose.yml`{{open}}, changing the `frontend` image on line 59:
 
 It's also recommended to update the `DD_VERSION` so that we can track performance changes across versions. Let's set this to `2.1`.
 
-With that, we can spin up our project. Let's see if there's anything else going on. Click back over to our original terminal and restart our services with: `docker-compose up -d`{{execute}}
+With that, we can start up our project. Let's see if there's anything else going on. Click back over to our original terminal and restart our services with: `docker-compose up -d`{{execute}}
 
-This will spin up our application using the changes made to the yaml file.
+This will start up our application using the changes made to the yaml file.

@@ -18,7 +18,7 @@ The `ddtrace` Python library includes an executable that allows us to automatica
 
 With this, we're now ready to *configure* our application's instrumentation.
 
-Automatic instrumentation is done via environment variables in our `docker-compose.yml`{{open}} starting on line 73:
+Automatic instrumentation is done via environment variables in our `docker-compose.yml`{{open}} starting on line 80:
 
 ```
       - DATADOG_SERVICE=advertisements-service
