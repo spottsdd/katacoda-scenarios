@@ -12,7 +12,7 @@ The `store-frontend` service has a Rails framework. The first step for instrumen
 
 The store-frontend service has been instrumented for you. Let's review the instrumentation.
 
-Take a look at `store-frontend-broken-instrumented/Gemfile`{{open}} in the Katacoda file explorer.
+Take a look at `Gemfile`{{open}} in the Katacoda file explorer.
 
 **Line 46** installs the `ddtrace` Gem, which is [Datadog’s tracing client for Ruby](https://docs.datadoghq.com/tracing/setup/ruby/). The `ddtrace` library traces requests as they flow across web servers, databases, and microservices so that developers have high visibility into bottlenecks and troublesome requests.
 
