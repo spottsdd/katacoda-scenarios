@@ -47,7 +47,7 @@ And for `show.html.erb` this was added to the very bottom:
 
 Since this code has already been deployed to the new Docker image `ddtraining/storefront-fixed:latest`, we just need to update our config to use the new image.
 
-Edit the `docker-compose.yml`{{open}}, changing the `frontend` image on line 59:
+Edit the `docker-compose.yml`{{open}}, changing the `frontend` image on line 60:
 
 ```
   image: "ddtraining/storefront-fixed:2.0.0"
