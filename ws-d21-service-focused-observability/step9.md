@@ -32,7 +32,7 @@ Outlier monitors we can look at the behavior of a group and alert if members of 
 
 Maybe you have a pool of web servers and one begins processing more requests than the others or less than the others. You know it should be handling more requests. Perhaps it’s dropped out of the pool or having errors. Or maybe you’re seeing a high number of errors from your web servers, but only from a specific AWS availability zone. An Outlier monitor can alert you when this anomalous behavior occurs.
 
-![Forecast Monitor](./assets/forecase_monitor.png)
+![Forecast Monitor](./assets/forecast_monitor.png)
 
 Like Anomaly monitors, the Forecast monitor will look at historical data and predict where it will be. This is especially useful for consumable resources such as disk space. With a Forecast monitor you can be notified before a disk becomes full so that you can run a cleanup process or grow a volume as needed.
 
