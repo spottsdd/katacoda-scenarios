@@ -6,11 +6,13 @@ When working on performance problems, this information is important because many
 
 The Datadog Continuous Profiler can track various types of “work”, including CPU usage, amount and types of objects being allocated in memory, time spent waiting to acquire locks, amount of network or file I/O, and more. The profile types available depend on the language being profiled
 
+### Profiler Flame Graph
 ![Profiler Flame Graph](./assets/profiler_flame_graph.png)
 
 This is a flame graph. The most important things it shows are how much CPU each method used (since this is a CPU profile) and how each method was called. For example, reading from the second row from the top, you see that `Thread.run()` called `QueuedThreadPool$2.run()` (amongst other things), which called `QueuedThreadPool.runjob(Runnable)`, which called `ReservedTheadExecutor$ReservedThread.run()`, and so on.
 
-![Profiler Flame Graph](./assets/profiler_compare.png)
+### View profiles along side Traces
+![Profiler Trace Details](./assets/profiler_compare.png)
 
 The Continuous Profiler can compare two profiles or profile aggregations with each other to help you identify code performance improvements, regressions, and structural changes. You can compare a profile with:
  * Profiles taken at a different time,
