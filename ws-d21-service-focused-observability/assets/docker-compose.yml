@@ -24,6 +24,7 @@ services:
       - POSTGRES_HOST=db
       - DD_SERVICE=discounts-service
       - DD_ENV=sfo101
+      - DD_VERSION=2.0
       - DD_LOGS_INJECTION=true
       - DD_TRACE_SAMPLE_RATE=1
       - DD_PROFILING_ENABLED=true
@@ -43,13 +44,13 @@ services:
     labels:
       com.datadoghq.tags.env: 'sfo101'
       com.datadoghq.tags.service: 'discounts-service'
-      com.datadoghq.tags.version: '2.0'
       my.custom.label.team: 'discounts'
       com.datadoghq.ad.logs: '[{"source": "python", "service": "discounts-service"}]'
   frontend:
     environment:
       - DD_SERVICE=store-frontend
       - DD_ENV=sfo101
+      - DD_VERSION=2.0
       - DD_LOGS_INJECTION=true
       - DD_TRACE_SAMPLE_RATE=1
       - DD_PROFILING_ENABLED=true
@@ -67,7 +68,6 @@ services:
     labels:
       com.datadoghq.tags.env: 'sfo101'
       com.datadoghq.tags.service: 'store-frontend'
-      com.datadoghq.tags.version: '2.0'
       my.custom.label.team: 'frontend'
       com.datadoghq.ad.logs: '[{"source": "ruby", "service": "store-frontend"}]'
   advertisements:
@@ -79,6 +79,7 @@ services:
       - POSTGRES_HOST=db
       - DD_SERVICE=advertisements-service
       - DD_ENV=sfo101
+      - DD_VERSION=2.0
       - DD_LOGS_INJECTION=true
       - DD_TRACE_SAMPLE_RATE=1
       - DD_PROFILING_ENABLED=true
@@ -98,7 +99,6 @@ services:
     labels:
       com.datadoghq.tags.env: 'sfo101'
       com.datadoghq.tags.service: 'advertisements-service'
-      com.datadoghq.tags.version: '2.0'
       my.custom.label.team: 'advertisements'
       com.datadoghq.ad.logs: '[{"source": "python", "service": "advertisements-service"}]'
   db:
