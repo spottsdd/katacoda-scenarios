@@ -28,7 +28,7 @@ For example, anomaly detection can help you discover when your web traffic is un
 
 ![Outlier Monitor](./assets/outlier_monitor.png)
 
-Outlier monitors we can look at the behavior of a group and alert if members of that group behave differently. 
+Outlier monitors can look at the behavior of a group and alert if members of that group behave differently.
 
 Maybe you have a pool of web servers and one begins processing more requests than the others or less than the others. You know it should be handling more requests. Perhaps it’s dropped out of the pool or having errors. Or maybe you’re seeing a high number of errors from your web servers, but only from a specific AWS availability zone. An Outlier monitor can alert you when this anomalous behavior occurs.
 
