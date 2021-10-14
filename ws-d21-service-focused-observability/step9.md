@@ -7,3 +7,7 @@ Navigate to the [Datadog Services list](https://app.datadoghq.com/apm/services) 
 Let's add one of these monitors so we can tell when our applications latency has risen too high, ensuring we are quickly alerted and are able to fix the issue.
 
 In this case, we are going to enable the default suggested `P90` latency monitor to the `store-frontend`, so we can tell when things are taking too long to respond.
+
+## Monitor Types
+
+![Monitor Types](./assets/monitor_types.png)
