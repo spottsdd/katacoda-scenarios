@@ -16,8 +16,8 @@ It looks like we've got a classic N+1 query on our `discounts-service`. From the
 
 Open the source code file: `discounts.py`{{open}} and locate the `flask_request.method == 'GET'` section. There will be a line of code which states what happened, with a fix. Uncomment the suggested changes right under the view definition, and comment out line 29.
 
-With this, we've now made a great first attempt at improving the experience for our users. Let's once again update the `DD_VERSION` number in `docker-compose.yml`{{open}}. Find the `discounts` service block at line 18. Bump the `DD_VERSION` to `2.1`.
+With this, we've now made a great first attempt at improving the experience for our users. Let's once again update the `DD_VERSION` number in `docker-compose.yml`{{open}}. Find the `discounts` service block at line 18. Update the `DD_VERSION` to `2.1`.
 
 Restart the service using: `docker-compose up -d`{{execute}}
 
-With this, we can now spin back up our application, and see the difference in traces between our previous and current improvements.
+With this, we can now start back up our application, and see the difference in traces between our previous and current improvements.

@@ -37,8 +37,8 @@ Open the `docker-compose.yml`{{open}} file.
 
 By default, the Datadog Ruby APM trace library will send traces to `localhost` over port 8126. Because we're running within `docker-compose`, we needed to set an environment variable, `DD_AGENT_HOST`, for our Ruby trace library to know to ship to the `agent` container instead. You'll find this on line 57.
 
-We've also added `DD_TRACE_SAMPLE_RATE` and set it to be `1`. This allows us to use [Tracing without Limits™](https://docs.datadoghq.com/tracing/trace_retention_and_ingestion/) for Trace Search and Analytics from within Datadog.
+We've also added `DD_TRACE_SAMPLE_RATE` and set it to be `1`. This allows us to use [Tracing without Limits™](https://docs.datadoghq.com/tracing/trace_retention_and_ingestion/) for Trace Search and Analytics from within Datadog. We're also able to continue traces downstream, utilizing Distributed Traces.
 
-With this, our Ruby application is instrumented. We're also able to continue traces downstream, utilizing Distributed Traces.
+With this, our Ruby application is instrumented. 
 
 Next, let's look at how a Python application is instrumented.

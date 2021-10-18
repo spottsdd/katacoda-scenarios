@@ -20,7 +20,7 @@ The Continuous Profiler can compare two profiles or profile aggregations with ea
  * Profiles with a different set of Datadog tags (for example, environment, version, or data center).
 
 ### Comparing Recent Versions
-On the Aggregation view, select a service to see its aggregated profile for a particular metric (for example, wall time) over the selected time frame. Then click *Compare* to compare it to the aggregated profile of another version
+On the Aggregation view, select a service to see its aggregated profile for a particular metric over the selected time frame. Then click *Compare* to compare it to the aggregated profile of another version
 
 ![Profiler Flame Graph](./assets/profiler_trace_detail.png)
 

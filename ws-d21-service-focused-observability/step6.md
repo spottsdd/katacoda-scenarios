@@ -1,8 +1,8 @@
 With the [Service List](https://app.datadoghq.com/apm/services), we get a high level view of overall service performance. We can quickly see services that are running slower than the rest. When working with a team migrating to microservices, this view can be a great first approach to breaking down existing problems.
 
-For example, if we look at the [Frontend Service](https://app.datadoghq.com/apm/service/store-frontend), we can see there are two endpoints in particular that are substantially slower than the rest. 
-
 ![Slow Services](./assets/bottleneck.gif)
+
+As we click into the Overview Page of the [Frontend Service](https://app.datadoghq.com/apm/service/store-frontend), we can see there are two endpoints in particular that are substantially slower than the rest.
 
 Both the `HomeController#index` and the `ProductController#show` enpoints are showing *much* longer latency times. If we click in and view a trace, we'll see that we've got a downstream microservice taking up a substantial portion of our time.
 
@@ -19,7 +19,7 @@ Since this is a simple fix, let's take care of this on our own.
 
 **Hint:** Look for `flask_request.method == 'GET'` 
 
-Before we restart the services, open the `docker-compose.yml`{{open}} file and find the `advertisements` settings starting on line 73. Bump the `DD_VERSION` to `2.1` then restart the service using `docker-compose up -d`{{execute}}
+Before we restart the services, open the `docker-compose.yml`{{open}} file and find the `advertisements` settings starting on line 73. Update the `DD_VERSION` to `2.1` then restart the service using `docker-compose up -d`{{execute}}
 
 What sort of an improvement in page load time do you see now? Can you graph the differences over time?
 

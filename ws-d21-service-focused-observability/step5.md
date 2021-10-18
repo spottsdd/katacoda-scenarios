@@ -4,7 +4,7 @@ We'll start by looking at the Service Map, to get an idea for our current infras
 
 In doing so, we can tell that we've got two microservices that our frontend calls, a `discounts-service`, along with an `advertisements-service`.
 
-If we navigate to our Service List in Datadog, we can see that our API itself isn't throwing any errors. The errors must be happening on the frontend.
+If we navigate to our Service List in Datadog, we can see which services are throwing any errors, at a glance.
 
 ![Services List](./assets/problematic-service.gif)
 
@@ -24,13 +24,13 @@ It seems the problem happens in a template. Let's get rid of that part of the te
 
 ## Reviewing Code Changes for the Fix
 
-After passing this information to our developers, they reported the following fixes have been deployed to a new Docker image named `ddtraining/storefront-fixed:latest`. Let's review these fixes before updating and deploying the new image.
+After passing this information to our developers, they reported the following fixes have been deployed to a new Docker image named `ddtraining/storefront-fixed:latest`. Let's review these fixes before deploying the new image.
 
 Our developers can see that they'll need to open `spree_application.html.erb`{{open}} and delete the line under `<div class="container">`. It should begin with a `<br />` and end with a `</center>`.
 
 In this case, the banner ads were meant to be put under `show.html.erb`{{open}} and `index.html.erb`{{open}}
 
-For the `index.html.erb`, under `<div data-hook="homepage_products">` our developers added the code:
+For the `index.html.erb`, under `<div data-hook="homepage_products">` our developers needed to add the code:
 
 ```ruby
 <br /><center><a href="<%= @ads['url'] %>"><img src="data:image/png;base64,<%= @ads['base64'] %>" /></a></center>
@@ -55,6 +55,6 @@ Edit the `docker-compose.yml`{{open}}, changing the `frontend` image on line 60:
 
 It's also recommended to update the `DD_VERSION` so that we can track performance changes across versions. Let's set this to `2.1`.
 
-With that, we can start up our project. Let's see if there's anything else going on. Click back over to our original terminal and restart our services with: `docker-compose up -d`{{execute}}
+With the updates in place, we need to restart our service. Click back over to our terminal and restart our services with: `docker-compose up -d`{{execute}}
 
-This will start up our application using the changes made to the yaml file.
+This will start up our application using the changes made to the yaml file. Let's see if there's anything else going on.
