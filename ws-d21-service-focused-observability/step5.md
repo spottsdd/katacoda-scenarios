@@ -1,10 +1,10 @@
-We'll start by looking at the Service Map, to get an idea for our current infrastructure and microservice dependencies.
+We'll start by looking at the [Service Map](https://app.datadoghq.com/apm/map?env=sfo101), to get an idea for our current infrastructure and microservice dependencies.
 
 ![Datadog Service Map](./assets/service-map.png)
 
 In doing so, we can tell that we've got two microservices that our frontend calls, a `discounts-service`, along with an `advertisements-service`.
 
-If we navigate to our Service List in Datadog, we can see which services are throwing any errors, at a glance.
+If we navigate to our [Service List](https://app.datadoghq.com/apm/services?env=sfo101) in Datadog, we can see which services are throwing any errors, at a glance.
 
 ![Services List](./assets/problematic-service.gif)
 
@@ -18,9 +18,11 @@ Let's click into that view and see if a trace from that view can tell us what's 
 
 ![Problematic Traces](./assets/store-frontend_Spree_OrdersController-trace-errors.png)
 
-It seems the problem happens in a template. Let's get rid of that part of the template so we can get the site back up and running while figuring out what happened.
+It seems the problem happens in a template. It would be best if we have our engineers remove the problematic portion of the template, while we further investigate what is going on.
 
 ![Trace Errors](./assets/trace-details-error-message.png)
+
+This should allow users to still be able to use the application without crashes from template errors.
 
 ## Deploying the Fixed Code
 
@@ -28,7 +30,7 @@ After identifying the specific view template issue, our engineers went ahead and
 
 Since this code has already been deployed to the new Docker image `ddtraining/storefront-fixed:2.0.0`, we just need to update our config to use the new image.
 
-Edit the `docker-compose.yml`{{open}}, changing the `frontend` image on **line 62**:
+Navigate to the IDE tab. Edit the `docker-compose.yml`{{open}}, changing the `frontend` image on **line 62**:
 
 ```
   image: "ddtraining/storefront-fixed:2.0.0"

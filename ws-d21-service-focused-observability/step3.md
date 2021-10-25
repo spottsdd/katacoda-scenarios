@@ -12,7 +12,7 @@ The `store-frontend` service has a Rails framework. The first step for instrumen
 
 The store-frontend service has been instrumented for you. Let's review the instrumentation.
 
-Take a look at `Gemfile`{{open}} in the Katacoda file explorer.
+Open the IDE tab. Take a look at `Gemfile`{{open}} in the Katacoda file explorer.
 
 **Line 46** installs the `ddtrace` Gem, which is [Datadog’s tracing client for Ruby](https://docs.datadoghq.com/tracing/setup/ruby/). The `ddtrace` library traces requests as they flow across web servers, databases, and microservices so that developers have high visibility into bottlenecks and troublesome requests.
 
@@ -33,7 +33,7 @@ end
 
 ## Additional Settings
 
-Open the `docker-compose.yml`{{open}} file.
+Open the IDE tab, and then open the `docker-compose.yml`{{open}} file.
 
 By default, the Datadog Ruby APM trace library will send traces to `localhost` over port 8126. Because we're running within `docker-compose`, we needed to set an environment variable, `DD_AGENT_HOST`, for our Ruby trace library to know to ship to the `agent` container instead. You'll find this on **line 57**.
 
