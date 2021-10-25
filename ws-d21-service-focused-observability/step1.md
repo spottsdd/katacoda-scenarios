@@ -1,5 +1,15 @@
 Welcome to the first section of the workshop.
 
+Before doing clicking or doing anything in the environment, allow the lab to finish loading. You will know it is complete when you see the message:
+
+```
+Provisioning Complete
+
+A Datadog account has been created for you. 
+You can login at http://app.datadoghq.com using
+the following credentials:
+```
+
 1. Take a look at the command listed below. See the little curled arrow icon that appears next to it? That means it's a clickable command. Just click it and the command will be copied to the terminal and executed.
 
     `ls -la`{{execute}}
