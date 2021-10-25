@@ -1,9 +1,54 @@
-Use the tabs on the right to switch between a terminal, a text editor IDE, and open the Storedog website in a new tab.
+Welcome to the first section of the workshop.
 
-The containers for our environment have been started for us in the background.
+1. Take a look at the command listed below. See the little curled arrow icon that appears next to it? That means it's a clickable command. Just click it and the command will be copied to the terminal and executed.
 
-## Log into the Datadog Trial Account
+    `ls -la`{{execute}}
 
-In the terminal on the right, you'll see credentials for a newly provisioned Datadog trial account. Open a new private/incognito window and use the provided credentials to log into [Datadog](https://app.datadoghq.com/account/login).
+1. The lab instructions left. A terminal and Visual Studio Code IDE tabs on the right. Whenever working in the IDE, your work will be saved automatically.
 
-**Note:** You can access these login credentials whenever you need by typing `creds` in the terminal.
+    You'll also find a tab titled "storedog", which you'll learn more about soon.
+
+1. If you ever create a new file in the terminal the IDE's file explorer should update within a few seconds. If it doesn't, click the refresh button above the file explorer and the view will update. The command below will create a new file called newfile.txt.
+
+    `touch newfile.txt`{{execute}}
+
+1. Now login to your <a href="https://app.datadoghq.com" target="_datadog">Datadog account</a>. On the right side in the terminal you should see login information for the account we created for you. Later if you forget the login information, run `creds`{{execute}} and you will see the information again.
+
+1. Take a look around. We will be trying out many of the sections during this training.
+
+1. Now verify that you are in the right organization. Visit <a href="https://app.datadoghq.com/account/settings#api" target="_datadog">the API Keys section</a>, which you can find in the Global Navigation under **Integrations > APIs**. Expand API Keys and hover over the purple rectangle to reveal the API key we have created for you.
+
+![API Key in the Datadog App](./assets/api_key_in_datadog.png)
+
+1. In the Training Lab terminal, run the command `echo $DD_API_KEY`{{execute}} to see the API key environment variable. Verify that this is the same API key. You don't have to memorize the entire key. Just making sure that the first and last couple of characters are the same should be good enough to ensure a match.  
+
+    _Note: API and Application keys are different._
+
+    If this is not the same API key that you saw in your Datadog account, you may have been in the wrong organization. You can switch organizations by clicking on the Account menu in the Datadog nav bar and selecting the new organization we created for you.
+
+1. Now that you have verified that you are in the correct organization, move on to learn about the application you'll use to learn about the Datadog platform.
+
+## Storedog
+
+In this workshop you're going to work with Storedog, a fully functional e-commerce application running on a few Docker containers managed by Docker Compose.
+
+The Datadog Community team created this application for use in the Learning Center, workshops, and demos.
+
+1. Click the IDE tab and wait for the editor to load. It takes a bit.
+
+    Open the `docker-compose.yml`{{open}} file and review how these services are configured. 
+
+2. (Optional) The code for the Storedog services is available in the IDE file explorer, if you'd like to look at it.
+
+2. The application is already running. To see the containers, execute the following command in the terminal:
+
+    `docker-compose ps`{{execute}}
+
+3. Select the tab titled "Storedog" in the right-hand panel. This will open up Storedog as a new tab in your browser. You might need to refresh until the frontend service is fully responsive.
+
+    ![Storedog homepage](./assets/storedog_screenshot.png)
+
+4. Take a few moments and explore the application before moving on. You'll use this application throughout the rest of the workshop to learn about different components about the Datadog platform.
+
+5. At the end of every section of this workshop, including this one, run `finish`{{execute}} when you are finished. 
+
