@@ -8,7 +8,7 @@ For supported applications like Flask, `ddtrace-run` dramatically simplifies the
 
 ## Instrumenting the Advertisements Service
 
-In our `docker-compose.yml`{{open}} there's a command to bring up our Flask server. If we look at line 92, we'll see:
+In our `docker-compose.yml`{{open}} there's a command to bring up our Flask server. If we look at **line 94**, we'll see:
 
 ```
 ddtrace-run flask run --port=5002 --host=0.0.0.0
@@ -18,7 +18,7 @@ The `ddtrace` Python library includes an executable that allows us to automatica
 
 With this, we're now ready to *configure* our application's instrumentation.
 
-Automatic instrumentation is done via environment variables in our `docker-compose.yml`{{open}} starting on line 80:
+Automatic instrumentation is done via environment variables in our `docker-compose.yml`{{open}} starting on **line 82**:
 
 ```
       - DATADOG_SERVICE=advertisements-service
@@ -30,7 +30,7 @@ Automatic instrumentation is done via environment variables in our `docker-compo
       - DD_AGENT_HOST=agent
 ```
 
-The last thing we need to add is a *label* to our container, so our logs are sent with the label of the service, and with the proper language pipeline processor starting on line 99:
+The last thing we need to add is a *label* to our container, so our logs are sent with the label of the service, and with the proper language pipeline processor starting on **line 103**:
 
 ```
     labels:
@@ -41,7 +41,7 @@ The last thing we need to add is a *label* to our container, so our logs are sen
       com.datadoghq.ad.logs: '[{"source": "python", "service": "advertisements-service"}]'
 ```
 
-We can see similar settings for the `discounts-service` starting on line 18:
+We can see similar settings for the `discounts-service` starting on **line 18**:
 
 ```
   discounts:

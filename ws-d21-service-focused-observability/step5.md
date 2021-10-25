@@ -22,32 +22,13 @@ It seems the problem happens in a template. Let's get rid of that part of the te
 
 ![Trace Errors](./assets/trace-details-error-message.png)
 
-## Reviewing Code Changes for the Fix
-
-After passing this information to our developers, they reported the following fixes have been deployed to a new Docker image named `ddtraining/storefront-fixed:latest`. Let's review these fixes before deploying the new image.
-
-Our developers can see that they'll need to open `spree_application.html.erb`{{open}} and delete the line under `<div class="container">`. It should begin with a `<br />` and end with a `</center>`.
-
-In this case, the banner ads were meant to be put under `show.html.erb`{{open}} and `index.html.erb`{{open}}
-
-For the `index.html.erb`, under `<div data-hook="homepage_products">` our developers needed to add the code:
-
-```ruby
-<br /><center><a href="<%= @ads['url'] %>"><img src="data:image/png;base64,<%= @ads['base64'] %>" /></a></center>
-
-```
-
-And for `show.html.erb` this was added to the very bottom:
-
-```ruby 
-<br /><center><a href="<%= @ads['url'] %>"><img src="data:image/png;base64,<%= @ads['base64'] %>" /></a></center><br />
-```
-
 ## Deploying the Fixed Code
+
+After identifying the specific view template issue, our engineers went ahead and create an updated image for us with this code removed. 
 
 Since this code has already been deployed to the new Docker image `ddtraining/storefront-fixed:2.0.0`, we just need to update our config to use the new image.
 
-Edit the `docker-compose.yml`{{open}}, changing the `frontend` image on line 60:
+Edit the `docker-compose.yml`{{open}}, changing the `frontend` image on **line 62**:
 
 ```
   image: "ddtraining/storefront-fixed:2.0.0"
