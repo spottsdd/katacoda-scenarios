@@ -45,7 +45,7 @@ And for `show.html.erb` this was added to the very bottom:
 
 ## Deploying the Fixed Code
 
-Since this code has already been deployed to the new Docker image `ddtraining/storefront-fixed:latest`, we just need to update our config to use the new image.
+Since this code has already been deployed to the new Docker image `ddtraining/storefront-fixed:2.0.0`, we just need to update our config to use the new image.
 
 Edit the `docker-compose.yml`{{open}}, changing the `frontend` image on line 60:
 
@@ -55,6 +55,6 @@ Edit the `docker-compose.yml`{{open}}, changing the `frontend` image on line 60:
 
 It's also recommended to update the `DD_VERSION` so that we can track performance changes across versions. Let's set this to `2.1`.
 
-With the updates in place, we need to restart our service. Click back over to our terminal and restart our services with: `docker-compose up -d`{{execute}}
+With the updates in place, we need to restart our service. Click back over to our terminal and restart our services with: `docker-compose down && docker-compose up -d`{{execute}}
 
-This will start up our application using the changes made to the yaml file. Let's see if there's anything else going on.
+This will start up our application using the changes made to the yaml file. Let's see if there's anything else going on. Let's wait a few minutes for our new services to come up and our deployment to begin receiving traffic.

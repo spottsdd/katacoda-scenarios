@@ -53,6 +53,7 @@ We can see similar settings for the `discounts-service` starting on line 18:
       - POSTGRES_HOST=db
       - DD_SERVICE=discounts-service
       - DD_ENV=sfo101
+      - DD_VERSION=2.0
       - DD_LOGS_INJECTION=true
       - DD_TRACE_SAMPLE_RATE=1
       - DD_PROFILING_ENABLED=true
@@ -66,15 +67,40 @@ We can see similar settings for the `discounts-service` starting on line 18:
       ]
     ports:
       - '5001:5001'
+    volumes:
+      - /root/lab/discounts.py:/app/discounts.py
     depends_on:
       - agent
       - db
     labels:
       com.datadoghq.tags.env: 'sfo101'
       com.datadoghq.tags.service: 'discounts-service'
-      com.datadoghq.tags.version: '2.0'
       my.custom.label.team: 'discounts'
       com.datadoghq.ad.logs: '[{"source": "python", "service": "discounts-service"}]'
+  frontend:
+    environment:
+      - DD_SERVICE=store-frontend
+      - DD_ENV=sfo101
+      - DD_VERSION=2.0
+      - DD_LOGS_INJECTION=true
+      - DD_TRACE_SAMPLE_RATE=1
+      - DD_PROFILING_ENABLED=true
+      - DD_AGENT_HOST=agent 
+      - DD_CLIENT_TOKEN
+      - DD_APPLICATION_ID
+    image: 'ddtraining/storefront:2.0.0'
+    command: sh docker-entrypoint.sh
+    ports:
+      - '3000:3000'
+    depends_on:
+      - agent
+      - discounts
+      - advertisements
+    labels:
+      com.datadoghq.tags.env: 'sfo101'
+      com.datadoghq.tags.service: 'store-frontend'
+      my.custom.label.team: 'frontend'
+      com.datadoghq.ad.logs: '[{"source": "ruby", "service": "store-frontend"}]'
 ```
 
 To verify for yourself, take a look at the `discounts.py`{{open}} file. You'll see there's no reference to Datadog at all.
