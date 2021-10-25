@@ -6,11 +6,7 @@ Welcome to the first section of the workshop.
 
 1. The lab instructions left. A terminal and Visual Studio Code IDE tabs on the right. Whenever working in the IDE, your work will be saved automatically.
 
-    You'll also find a tab titled "storedog", which you'll learn more about soon.
-
-1. If you ever create a new file in the terminal the IDE's file explorer should update within a few seconds. If it doesn't, click the refresh button above the file explorer and the view will update. The command below will create a new file called newfile.txt.
-
-    `touch newfile.txt`{{execute}}
+    You'll also find a tab titled "Storedog", which you'll learn more about soon.
 
 1. Now login to your <a href="https://app.datadoghq.com" target="_datadog">Datadog account</a>. On the right side in the terminal you should see login information for the account we created for you. Later if you forget the login information, run `creds`{{execute}} and you will see the information again.
 
