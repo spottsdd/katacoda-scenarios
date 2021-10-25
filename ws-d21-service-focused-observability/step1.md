@@ -14,7 +14,7 @@ the following credentials:
 
     `ls -la`{{execute}}
 
-1. The lab instructions left. A terminal and Visual Studio Code IDE tabs on the right. Whenever working in the IDE, your work will be saved automatically.
+1. The lab instructions left. A terminal and Visual Studio Code IDE tabs on the right. Whenever working in the IDE, your work will be **saved automatically**.
 
     You'll also find a tab titled "Storedog", which you'll learn more about soon.
 
