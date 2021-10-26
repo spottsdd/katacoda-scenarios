@@ -10,7 +10,7 @@ You can login at http://app.datadoghq.com using
 the following credentials:
 ```
 
-1. You have your lab instructions on the left, a terminal on the bottom right, and a Visual Studio Code IDE tab towards the top of the pane. Whenever working in the IDE, your work will be **saved automatically**.
+1. You have your lab instructions on the left and a terminal on the right. On the top of your terminal is another tab which will oen Visual Studio Code IDE tab. Whenever working in the IDE, your work will be **saved automatically**.
 
     You'll also find a tab titled "Storedog", which you'll learn more about soon.
 
@@ -41,8 +41,6 @@ The Datadog Community team created this application for use in the Learning Cent
 1. Click the IDE tab and wait for the editor to load. It takes a bit.
 
     Open the `docker-compose.yml`{{open}} file and review how these services are configured. 
-
-2. (Optional) The code for the Storedog services is available in the IDE file explorer, if you'd like to look at it.
 
 2. The application is already running. To see the containers and their statuses, execute the following command in the terminal:
 
