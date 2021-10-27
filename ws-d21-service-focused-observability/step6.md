@@ -19,7 +19,7 @@ Since this is a simple fix, let's take care of this on our own.
 
 **Hint:** Look for `flask_request.method == 'GET'` 
 
-Before we restart the services, open the `docker-compose.yml`{{open}} file and find the `advertisements` settings starting on line 73. Update the `DD_VERSION` to `2.1` then restart the service using `docker-compose down && docker-compose up -d`{{execute}}
+Before we restart the services, open the `docker-compose.yml`{{open}} file and find the `advertisements` settings starting on line 75. Update the `DD_VERSION` to `2.1` then restart the service using `docker-compose down && docker-compose up -d`{{execute}}
 
 What sort of an improvement in page load time do you see now? Can you graph the differences over time?
 
