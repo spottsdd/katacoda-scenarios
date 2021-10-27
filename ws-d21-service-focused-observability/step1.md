@@ -1,6 +1,6 @@
 Welcome to the first section of the workshop.
 
-Before doing clicking or doing anything in the environment, allow the lab to finish loading. You will know it is complete when you see the message:
+Before clicking or doing anything in the environment, allow the lab to finish loading. You will know it is complete when you see the message:
 
 ```
 Provisioning Complete
