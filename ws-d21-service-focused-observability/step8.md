@@ -9,7 +9,7 @@ The Datadog Continuous Profiler can track various types of “work”, including
 ### Profiler Flame Graph
 ![Profiler Flame Graph](./assets/profiler_flame_graph.png)
 
-This is a flame graph. The most important things it shows are how much CPU each method used (since this is a CPU profile) and how each method was called. For example, reading from the second row from the top, you see that `Thread.run()` called `QueuedThreadPool$2.run()` (amongst other things), which called `QueuedThreadPool.runjob(Runnable)`, which called `ReservedTheadExecutor$ReservedThread.run()`, and so on.
+This is a flame graph. The most important things it shows are how much CPU each method used (since this is a CPU profile) and how each method was called.
 
 ### View Profiles Along Side Traces
 ![Profiler Trace Details](./assets/profiler_trace_detail.png)
