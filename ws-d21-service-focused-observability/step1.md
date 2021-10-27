@@ -18,9 +18,9 @@ the following credentials:
 
     `ls -la`{{execute}}
 
-1. In the terminal on the right you should see login information for the account we created for you. Later if you forget the login information, run `creds`{{execute}} and you will see the information again. Now , using the provided credentials, login to your account on<a href="https://app.datadoghq.com" target="_datadog">Datadog </a>. 
+1. In the terminal on the right you should see login information for the account we created for you. Later if you forget the login information, run `creds`{{execute}} and you will see the information again. Now , using the provided credentials, login to your account on <a href="https://app.datadoghq.com" target="_datadog">Datadog </a>. 
 
-1. Now that you are logged into the platform , visit <a href="https://app.datadoghq.com/account/settings#api" target="_datadog">the API Keys section</a>, which you can find in the Global Navigation under **Integrations > APIs**. Expand API Keys and hover over the purple rectangle to reveal the API key we have created for you.
+1. Now that you are logged into the platform, visit <a href="https://app.datadoghq.com/account/settings#api" target="_datadog">the API Keys section</a>, which you can find in the Global Navigation under **Integrations > APIs**. Expand API Keys and hover over the purple rectangle to reveal the API key we have created for you.
 
 ![API Key in the Datadog App](./assets/api_key_in_datadog.png)
 
@@ -51,6 +51,3 @@ The Datadog Community team created this application for use in the Learning Cent
     ![Storedog homepage](./assets/storedog_screenshot.png)
 
 4. Take a few moments and explore the application before moving on. You'll use this application throughout the rest of the workshop to learn about different components about the Datadog platform.
-
-5. At the end of every section of this workshop, including this one, run `finish`{{execute}} when you are finished. 
-

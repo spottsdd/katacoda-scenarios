@@ -26,9 +26,9 @@ In the above yaml, we've added a Datadog Agent container and along with it, volu
 
 In addition, on **line 6**, we added the environment variable reference `DD_API_KEY` along with enabling logs and the process Agent. Finally, on **line 13**, we've opened the port `8126` - where traces get sent for collection at the Agent level.
 
-If we run the `env | grep ^DD`{{execute}} command we can see that our lab environment already has the Datadog API key injected into our scenario.
-
 On **line 10** in our yaml file, we set `DD_TAGS='env:sfo101'`. In this line, we've set an `env` tag for Datadog that allows us to filter to a specific environment, making sure we don't pollute other environments while testing.
+
+If we run the `env | grep ^DD`{{execute}} command we can see that our lab environment already has the Datadog API key injected into our scenario.
 
 Now that the application has been running for a while, we should see data coming into the Datadog account. Navigate to the [Logs Live Tail](https://app.datadoghq.com/logs/livetail) page to see logs flowing into your account.
 
