@@ -10,7 +10,7 @@ You can login at http://app.datadoghq.com using
 the following credentials:
 ```
 
-1. You have your lab instructions on the left and a terminal on the right. On the top of your terminal is another tab which will oen Visual Studio Code IDE tab. Whenever working in the IDE, your work will be **saved automatically**.
+1. You have your lab instructions on the left and a terminal on the right. On the top of your terminal is another tab which will open Visual Studio Code IDE tab. Whenever working in the IDE, your work will be **saved automatically**.
 
     You'll also find a tab titled "Storedog", which you'll learn more about soon.
 
@@ -46,7 +46,7 @@ The Datadog Community team created this application for use in the Learning Cent
 
     `docker-compose ps`{{execute}}
 
-3. Select the tab titled "Storedog" in the right-hand panel. This will open up Storedog as a new tab in your browser. You might need to refresh until the frontend service is fully responsive.
+3. Select the tab titled "Storedog" in the right-hand panel. This will open up Storedog within the lab iframe. You might need to refresh until the frontend service is fully responsive.
 
     ![Storedog homepage](./assets/storedog_screenshot.png)
 
